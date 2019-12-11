@@ -1,0 +1,89 @@
+
+/* // // Create a "close" button and append it to each list item
+// var myNodelist = document.getElementsByClassName("myul>li");
+// var i;
+// for (i = 0; i < myNodelist.length; i++) {
+//   var span = document.createElement("SPAN");
+//   var txt = document.createTextNode("\u00D7");
+//   span.className = "close";
+//   span.appendChild(txt);
+//   myNodelist[i].appendChild(span);
+// }
+
+// // Click on a close button to hide the current list item
+// var close = document.getElementsByClassName("close");
+// var i;
+// for (i = 0; i < close.length; i++) {
+//   close[i].onclick = function() {
+//     var div = this.parentElement;
+//     div.style.display = "none";
+//   }
+// }
+
+// // Add a "checked" symbol when clicking on a list item
+// var list = document.querySelector('ul');
+// list.addEventListener('click', function(ev) {
+//   if (ev.target.tagName === 'LI') {
+//     ev.target.classList.toggle('checked');
+//   }
+// }, false);
+
+// // Create a new list item when clicking on the "Add" button
+// function newElement() {
+//   var li = document.createElement("li");
+//   var inputValue = document.getElementById("skills").value;
+//   var t = document.createTextNode(inputValue);
+//   li.appendChild(t);
+//   if (inputValue === '') {
+//     alert("You must write something!");
+//   } else {
+//     document.getElementById("myUL").appendChild(li);
+//   }
+//   document.getElementById("skills").value = "";
+
+//   var span = document.createElement("SPAN");
+//   var txt = document.createTextNode("\u00D7");
+//   span.className = "close";
+//   span.appendChild(txt);
+//   li.appendChild(span);
+
+//   for (i = 0; i < close.length; i++) {
+//     close[i].onclick = function() {
+//       var div = this.parentElement;
+//       div.style.display = "none";
+//     }
+//   }
+// } */
+
+/* Remove margins and padding from the list */
+.myul {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Style the list items */
+  .myul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Set all odd list items to a different color (zebra-stripes) */
+  .myul li:nth-child(odd) {
+    background: #f9f9f9;
+  }
+
+  /* Darker background-color on hover */
+  .myul li:hover {
+    background: #ddd;
+  }
+
