@@ -2609,6 +2609,25 @@ fieldset:disabled a.btn {
   border-color: #343a40;
 }
 
+.card-btn-white-primary {
+    color: #467fcf;
+    background: #fff;
+    /* background-image: none; */
+    z-index: 1;
+    border-color: #467fcf !important;
+    border-radius: 50px !important;
+}
+
+.card-btn-white-primary:hover {
+color: #fff;
+background-color: #edf2fa;
+border-color: #467fcf;
+}
+
+.card-btn-white-primary:focus, .btn-outline-primary.focus {
+box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.5);
+}
+
 .btn-dark:hover {
   color: #fff;
   background-color: #23272b;
@@ -15157,6 +15176,31 @@ a.tag-addon:hover {
   z-index: 1;
   color: #467fcf;
   background: #edf2fa;
+}
+
+.color-green {
+    border-color: green !important;
+    color: green !important;
+}
+
+.color-red {
+    border-color: red !important;
+    color: red !important;
+}
+
+.color-yellow {
+    border-color: yellow !important;
+    color: yellow !important;
+}
+
+.color-black {
+    border-color: black !important;
+    color: black !important;
+}
+
+.color-blue {
+    border-color: #467fcf !important;
+    color: #467fcf !important;
 }
 
 .selectgroup-input:focus + .selectgroup-button {

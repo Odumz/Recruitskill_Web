@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,3 +43,27 @@ Route::get('/account-settings', 'HomeController@accountSettings')->name('account
 Route::get('/notifications', 'HomeController@notification')->name('notification');
 
 Route::get('/start-recruitment', 'HomeController@startRecruitment')->name('startrecruitment');
+
+Route::get('/upcoming-interview', 'HomeController@upcomingInterview')->name('upcomingInterview');
+
+Route::get('/candidate-dashboard', 'CandidateController@home')->name('dashboard');
+
+Route::get('/course', 'CandidateController@course')->name('course');
+
+Route::get('/job-post-detail', 'CandidateController@jobPostDetail')->name('jobpostdetail');
+
+Route::get('/career', 'CandidateController@career')->name('career');
+
+Route::get('/academy', 'CandidateController@academy')->name('academy');
+
+Route::get('/verifications', 'CandidateController@verification')->name('verification');
+
+Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate')->name('onboardedcandidate');
+
+Route::get('candidate-profile', 'CandidateController@profile')->name('profile');
+
+Route::get('candidate-account-settings', 'CandidateController@accountSettings')->name('accountsettings');
+
+Route::get('candidate-notifications', 'CandidateController@notification')->name('notification');
+
+Route::get('candidate/start-recruitment', 'CandidateController@startRecruitment')->name('startrecruitment');

@@ -80,4 +80,9 @@ class HomeController extends Controller
     {
         return view('accountsettings');
     }
+
+    public function upcomingInterview()
+    {
+        return view('upcominginterviews');
+    }
 }
