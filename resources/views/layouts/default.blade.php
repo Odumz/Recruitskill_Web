@@ -111,10 +111,10 @@
                         </a>
                         </div>
                     </div>
-                    </div>
-                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                </div>
+                <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                     <span class="header-toggler-icon"></span>
-                    </a>
+                </a>
                 </div>
                 </div>
             </div>

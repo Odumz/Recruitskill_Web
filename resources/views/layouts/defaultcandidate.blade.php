@@ -132,7 +132,7 @@
                     <div class="col-lg order-lg-first">
                     <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link active"><i class="fa fa-dashboard"></i> Dashboard</a>
+                            <a href="/candidate-dashboard" class="nav-link active"><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a href="/career" class="nav-link"><i class="fa fa-dashboard"></i> Career</a>

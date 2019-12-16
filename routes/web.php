@@ -11,8 +11,8 @@
 |
 */
 
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,50 +20,56 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('user', 'UserController');
 
-Route::get('/dashboard', 'HomeController@home')->name('dashboard');
+Route::get('/home', 'HomeController@index');
 
-Route::get('/published-recruitment', 'HomeController@publishedRecruitment')->name('publishedrecruitment');
+Route::get('/dashboard', 'HomeController@home');
 
-Route::get('/ongoing-recruitment', 'HomeController@ongoingRecruitment')->name('ongoingrecruitment');
+Route::get('/published-recruitment', 'HomeController@publishedRecruitment');
 
-Route::get('/concluded-recruitment', 'HomeController@concludedRecruitment')->name('concludedrecruitment');
+Route::get('/ongoing-recruitment', 'HomeController@ongoingRecruitment');
 
-Route::get('/applications', 'HomeController@applications')->name('applications');
+Route::get('/concluded-recruitment', 'HomeController@concludedRecruitment');
 
-Route::get('/shortlisted-candidate', 'HomeController@shortlistedCandidate')->name('shortlistedcandidate');
+Route::get('/applications', 'HomeController@applications');
 
-Route::get('/onboarded-candidate', 'HomeController@onboardedCandidate')->name('onboardedcandidate');
+Route::get('/shortlisted-candidate', 'HomeController@shortlistedCandidate');
 
-Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/onboarded-candidate', 'HomeController@onboardedCandidate');
 
-Route::get('/account-settings', 'HomeController@accountSettings')->name('accountsettings');
+Route::get('/profile', 'HomeController@profile');
 
-Route::get('/notifications', 'HomeController@notification')->name('notification');
+Route::get('/account-settings', 'HomeController@accountSettings');
 
-Route::get('/start-recruitment', 'HomeController@startRecruitment')->name('startrecruitment');
+Route::get('/notifications', 'HomeController@notification');
 
-Route::get('/upcoming-interview', 'HomeController@upcomingInterview')->name('upcomingInterview');
+Route::get('/start-recruitment', 'HomeController@startRecruitment');
 
-Route::get('/candidate-dashboard', 'CandidateController@home')->name('dashboard');
+Route::get('/upcoming-interget', 'HomeController@upcomingInterget');
 
-Route::get('/course', 'CandidateController@course')->name('course');
+Route::get('/candidate-dashboard', 'CandidateController@home');
 
-Route::get('/job-post-detail', 'CandidateController@jobPostDetail')->name('jobpostdetail');
+Route::get('/course', 'CandidateController@course');
 
-Route::get('/career', 'CandidateController@career')->name('career');
+Route::get('/job-post-detail', 'CandidateController@jobPostDetail');
 
-Route::get('/academy', 'CandidateController@academy')->name('academy');
+Route::get('/career', 'CandidateController@career');
 
-Route::get('/verifications', 'CandidateController@verification')->name('verification');
+Route::get('/academy', 'CandidateController@academy');
 
-Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate')->name('onboardedcandidate');
+Route::get('/verifications', 'CandidateController@verification');
 
-Route::get('candidate-profile', 'CandidateController@profile')->name('profile');
+Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
 
-Route::get('candidate-account-settings', 'CandidateController@accountSettings')->name('accountsettings');
+Route::get('candidate-profile', 'CandidateController@profile');
 
-Route::get('candidate-notifications', 'CandidateController@notification')->name('notification');
+Route::get('candidate-account-settings', 'CandidateController@accountSettings');
 
-Route::get('candidate/start-recruitment', 'CandidateController@startRecruitment')->name('startrecruitment');
+Route::get('candidate-notifications', 'CandidateController@notification');
+
+Route::get('candidate/start-recruitment', 'CandidateController@startRecruitment');
+
+Route::get('doscountry', ['uses' => 'CountryController@getAllCountries']);
+
+Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry']);
