@@ -50,11 +50,15 @@ Route::get('/notifications', 'HomeController@notification');
 
 Route::get('/start-recruitment', 'HomeController@startRecruitment');
 
-Route::get('/upcoming-interget', 'HomeController@upcomingInterget');
+Route::get('/upcoming-interview', 'HomeController@upcomingInterview');
 
 Route::get('/candidate-dashboard', 'CandidateController@home');
 
 Route::get('/course', 'CandidateController@course');
+
+Route::get('/courses', 'CoursesController@courses');
+
+Route::get('/course-details', 'CoursesController@courseDetails');
 
 Route::get('/job-post-detail', 'CandidateController@jobPostDetail');
 
