@@ -54,9 +54,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-xl-8">
             <div class="card">
                 <div class="card-status bg-orange"></div>
                 <div class="card-header">
@@ -108,9 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6 col-xl-8">
             <div class="card">
                 <div class="card-status bg-green"></div>
                 <div class="card-header">
@@ -365,6 +361,60 @@
             <script>
                 require(['input-mask']);
             </script>
+        </div>
+        
+        <div class="col-md-3 col-xl-3">
+            <div class="card">
+                <div class="card-status bg-orange"></div>
+                <div class="card-header">
+                    <h3 class="card-title">What skillsets are required?</h3>
+                    {{-- <div class="card-options">
+                        <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                        <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                    </div> --}}
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                {{-- <div class="row">
+                                <div class="col-auto">
+                                    <span class="avatar avatar-xl" style="background-image: url(demo/faces/female/9.jpg)"></span>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                    <label class="form-label">Email-Address</label>
+                                    <input class="form-control" placeholder="your-email@domain.com"/>
+                                    </div>
+                                </div>
+                                </div> --}}
+                                <div class="form-group">
+                                    <label class="form-label">Skills</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Enter skill...">
+                                        <span class="input-group-append">
+                                          <button class="btn btn-primary" type="button">+ Add</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="skillUl"></div>
+                                {{-- <div class="form-group">
+                                    <label class="form-label">Job Description</label>
+                                    <textarea class="form-control" rows="7" placeholder="Enter the necessary description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" value="password"/>
+                                </div>
+                                <div class="form-footer d-flex">
+                                    <button class="btn btn-link col-sm-2 mr-auto">Previous</button>
+                                    <button class="btn btn-primary col-sm-2 ml-auto">Next</button>
+                                </div> --}}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

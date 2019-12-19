@@ -18,15 +18,18 @@
     <title>RecruitSkill | Home </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="./js/require.min.js"></script>
+    {{-- <script src="./js/require.min.js"></script>
     <script>
       requirejs.config({
           baseUrl: '.'
       });
-    </script>
+    </script> --}}
     <!-- Dashboard Core -->
     <link href="./css/dashboard.css" rel="stylesheet" />
     <script src="./js/dashboard.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="../../js/vendors/jquery-3.2.1.min.js"></script>
+    <script src="../../js/vendors/bootstrap.bundle.min.js"></script>
     <!-- c3.js Charts Plugin -->
     <link href="./plugins/charts-c3/plugin.css" rel="stylesheet" />
     <script src="./plugins/charts-c3/plugin.js"></script>
@@ -42,7 +45,7 @@
             <div class="header py-4">
                 <div class="container">
                 <div class="d-flex">
-                    <a class="header-brand" href="/home">
+                    <a class="header-brand" href="/candidate-dashboard">
                     <img src="./demo/brand/logo.png" class="header-brand-img" alt="recruitskill logo">
                     </a>
                     <div class="d-flex order-lg-2 ml-auto">
@@ -97,18 +100,23 @@
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="float-right"><span class="badge badge-primary">6</span></span>
-                            <i class="dropdown-icon fe fe-mail"></i> Inbox
+                            <i class="dropdown-icon fe fe-mail"></i> Invites
                         </a>
                         <a class="dropdown-item" href="#">
-                            <i class="dropdown-icon fe fe-send"></i> Message
+                            <i class="dropdown-icon fe fe-send"></i> Interviews
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        {{-- <a class="dropdown-item" href="#">
                             <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                        </a>
-                        <a class="dropdown-item" href="#">
+                        </a> --}}
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                         </div>
                     </div>
                     </div>

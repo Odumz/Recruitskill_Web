@@ -18,15 +18,18 @@
     <title>RecruitSkill | Home </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
-    <script src="./js/require.min.js"></script>
+    {{-- <script src="./js/require.min.js"></script>
     <script>
       requirejs.config({
           baseUrl: '.'
       });
-    </script>
+    </script> --}}
     <!-- Dashboard Core -->
     <link href="./css/dashboard.css" rel="stylesheet" />
     <script src="./js/dashboard.js"></script>
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="./asset/css/small-device.css" />
+    <script src="./js/vendors/jquery-3.2.1.min.js"></script>
+    <script src="./js/vendors/bootstrap.bundle.min.js"></script>
     <!-- c3.js Charts Plugin -->
     <link href="./plugins/charts-c3/plugin.css" rel="stylesheet" />
     <script src="./plugins/charts-c3/plugin.js"></script>
@@ -42,7 +45,7 @@
             <div class="header py-4">
                 <div class="container">
                 <div class="d-flex">
-                    <a class="header-brand" href="/home">
+                    <a class="header-brand" href="/dashboard">
                     <img src="./demo/brand/logo.png" class="header-brand-img" alt="recruitskill logo">
                     </a>
                     <div class="d-flex order-lg-2 ml-auto">
@@ -89,26 +92,32 @@
                         </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="profile.html">
+                        <a class="dropdown-item" href="/profile">
                             <i class="dropdown-icon fe fe-user"></i> Profile
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/account-settings">
                             <i class="dropdown-icon fe fe-settings"></i> Settings
                         </a>
-                        <a class="dropdown-item" href="#">
+                        {{-- <a class="dropdown-item" href="/applications">
                             <span class="float-right"><span class="badge badge-primary">6</span></span>
-                            <i class="dropdown-icon fe fe-mail"></i> Inbox
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="dropdown-icon fe fe-send"></i> Message
+                            <i class="dropdown-icon fe fe-file-text"></i> Applications
+                        </a> --}}
+                        <a class="dropdown-item" href="/upcoming-interview">
+                            <span class="float-right"><span class="badge badge-primary">6</span></span>
+                            <i class="dropdown-icon fa fa-calendar-check-o"></i> Interviews
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        {{-- <a class="dropdown-item" href="#">
                             <i class="dropdown-icon fe fe-help-circle"></i> Need help?
-                        </a>
-                        <a class="dropdown-item" href="#">
+                        </a> --}}
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -135,12 +144,12 @@
                         <a href="/dashboard" class="nav-link active"><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
-                        <a href="/start-recruitment" class="nav-link" data-toggle="dropdown"><i class="fa fa-caret-square-o-right"></i> Start Recruitment</a>
-                        <div class="dropdown-menu dropdown-menu-arrow">
+                        <a href="/start-recruitment" class="nav-link""><i class="fa fa-caret-square-o-right"></i> Start Recruitment</a>
+                        {{-- <div class="dropdown-menu dropdown-menu-arrow">
                             <a href="./cards.html" class="dropdown-item ">Cards design</a>
                             <a href="./charts.html" class="dropdown-item ">Charts</a>
                             <a href="./pricing-cards.html" class="dropdown-item ">Pricing cards</a>
-                        </div>
+                        </div> --}}
                         </li>
                         {{-- <li class="nav-item dropdown">
                         <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-calendar"></i> Components</a>
@@ -230,8 +239,8 @@
               <div class="row align-items-center">
                 <div class="col-auto">
                   <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-                    <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
+                    <li class="list-inline-item"><a href="/">Documentation</a></li>
+                    <li class="list-inline-item"><a href="/">FAQ</a></li>
                   </ul>
                 </div>
                 {{-- <div class="col-auto">
