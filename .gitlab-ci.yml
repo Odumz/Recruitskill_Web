@@ -1,0 +1,27 @@
+before_script:
+  - echo "Before script"
+  - cd /var/www/recruitskill #your project path
+building:
+  stage: build
+  script:
+    - git reset --hard
+    - git pull origin develop
+    - composer install
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan migrate --seed
+    - php artisan cache:clear
+    - php artisan config:clear
+    - php artisan storage:link
+    - sudo chown -R deployer:www-data /var/www/recruitskill/
+    - find /var/www/recruitskill -type f -exec chmod 664 {} \;
+    - find /var/www/recruitskill -type d -exec chmod 775 {} \;
+    - chgrp -R www-data storage bootstrap/cache
+    - chmod -R ug+rwx storage bootstrap/cache
+
+
+deploying:
+  stage: deploy
+  script:
+    - echo "Deployed"
+    - php artisan queue:restart #if you use queue

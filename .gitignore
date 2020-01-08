@@ -10,3 +10,17 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+
+
+temp.txt
+public/js/assets/adataTables.bootstrap4.min.js
+public/js/assets/ajquery.dataTables.min.js
+public/js/assets/angular.min.js
+public/js/assets/app.js
+public/js/assets/bootstrap.bundle.min.js
+public/js/assets/dataTables.bootstrap4.min.js
+public/js/assets/jquery.dataTables.min.js
+public/js/assets/jquery.min.js
+public/js/assets/loaded.js
+public/js/assets/themeswitcher.js

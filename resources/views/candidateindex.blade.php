@@ -399,6 +399,11 @@
                       </div>
                     </div>
                   </div>
+                  <div class="text-right">
+                    <div class="ml-auto">
+                        <a href="/career" class="btn pr-5"><i class="fe fe-eye"></i> See more</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

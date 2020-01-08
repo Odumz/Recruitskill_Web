@@ -5,31 +5,177 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-dashboard" style="color: blue;"></i> Academy
+                <i class="fa fa-dashboard" style="color: blue;"></i> Featured Skills
             </h1>
         </div>
-        <div class="card card-profile">
-            <div class="card-header" style="background-image: url(demo/photos/eberhard-grossgasteiger-311213-500.jpg);"></div>
-            <div class="card-body text-center">
-                <img class="card-profile-img" src="demo/faces/male/16.jpg">
-                <h3 class="mb-3">Google Inc</h3>
-                <p class="mb-4">
-                    Big belly rude boy, million dollar hustler. Unemployed.
-                </p>
-                <ul class="social-links list-inline mb-0 mt-2">
-                    <li class="list-inline-item">
-                      <a href="javascript:void(0)" title="Facebook" data-toggle="tooltip"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:void(0)" title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:void(0)" title="1234567890" data-toggle="tooltip"><i class="fa fa-phone"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="javascript:void(0)" title="Google Inc" data-toggle="tooltip"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                </ul>
+        {{-- <div class=""> --}}
+            <div class="row">
+              <div class="col-md-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="mb-4 text-center">
+                      <img src="demo/products/apple-iphone7-special.jpg" alt="Apple iPhone 7 128GB" class="img-fluid">
+                    </div>
+                    <h4 class="card-title"><a href="javascript:void(0)">Art of Communication</a></h4>
+                    <div class="card-subtitle">
+                      University of Salford
+                    </div>
+                    <div class="mt-5 d-flex align-items-center">
+                      <div class="product-price">
+                        {{-- <strong>120 followers</strong> --}}
+                        <p>120 followers</p>
+                      </div>
+                      <div class="ml-auto">
+                        <a href="javascript:void(0)" class="btn btn-primary"><i class="fe fe-plus"></i> Add to skills</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <div class="col-md-6 col-lg-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="mb-4 text-center">
+                      <img src="demo/products/gopro-hero.jpg" alt="Apple iPhone 7 128GB" class="img-fluid">
+                    </div>
+                    <h4 class="card-title"><a href="javascript:void(0)">Data Sciences</a></h4>
+                    <div class="card-subtitle">
+                      Udemy
+                    </div>
+                    <div class="mt-5 d-flex align-items-center">
+                      <div class="product-price">
+                        {{-- <strong>247 followers</strong> --}}
+                         <p>247 followers</p>
+                      </div>
+                      <div class="ml-auto">
+                        <a href="javascript:void(0)" class="btn btn-primary"><i class="fe fe-plus"></i> Add to skills</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                 <div class="card">
+                   <div class="card-body">
+                     <div class="mb-4 text-center">
+                       <img src="demo/products/gopro-hero.jpg" alt="Apple iPhone 7 128GB" class="img-fluid">
+                     </div>
+                     <h4 class="card-title"><a href="javascript:void(0)">Data Sciences</a></h4>
+                     <div class="card-subtitle">
+                       Udemy
+                     </div>
+                     <div class="mt-5 d-flex align-items-center">
+                       <div class="product-price">
+                         {{-- <strong>247 followers</strong> --}}
+                          <p>247 followers</p>
+                       </div>
+                       <div class="ml-auto">
+                         <a href="javascript:void(0)" class="btn btn-primary"><i class="fe fe-plus"></i> Add to skills</a>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-md-6 col-lg-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="mb-4 text-center">
+                        <img src="demo/products/gopro-hero.jpg" alt="Apple iPhone 7 128GB" class="img-fluid">
+                      </div>
+                      <h4 class="card-title"><a href="javascript:void(0)">Data Sciences</a></h4>
+                      <div class="card-subtitle">
+                        Udemy
+                      </div>
+                      <div class="mt-5 d-flex align-items-center">
+                        <div class="product-price">
+                          {{-- <strong>247 followers</strong> --}}
+                           <p>247 followers</p>
+                        </div>
+                        <div class="ml-auto">
+                          <a href="javascript:void(0)" class="btn btn-primary"><i class="fe fe-plus"></i> Add to skills</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        {{-- </div> --}}
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fa fa-dashboard" style="color: blue;"></i> My Skills
+            </h1>
+        </div>
+        <div class="card py-3">
+            <div class="page-header">
+                <h4 class="page-subtitle">
+                    <i class="fa fa-dashboard" style="color: blue;"></i> Add new skill
+                </h4>
+                <span class="col-1"></span>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <label class="selectgroup-item">
+
+                      <input type="checkbox" name="value" value="HTML" class="selectgroup-input" checked="">
+                      <span class="selectgroup-button">HTML</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-12 form-group">
+                <div class="input-group">
+                    <input type="text" id="inputAddDiv" class="form-control" placeholder="Type in a skill...">
+                    <span class="input-group-append">
+                        <button class="btn btn-primary" id="btnAddDiv" type="button">Add</button>
+                    </span>
+                </div>
+            </div>
+            <div class="page-header">
+                <h4 class="page-subtitle">
+                    <i class="fa fa-dashboard" style="color: blue;"></i> Verified Skills
+                </h4>
+                <span class="col-1"></span>
+            </div>
+            <div class="col-12 form-group">
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-blue" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-black" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-green" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-green" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-red" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                        <span class="input-group-append px-1">
+                                <button class="btn card-btn-white-primary color-black" id="btnAddDiv" type="button">HTML</button>
+                            </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-green" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
+                <div class="selectgroup selectgroup-pills" id="myUL">
+                    <span class="input-group-append px-1">
+                        <button class="btn card-btn-white-primary color-red" id="btnAddDiv" type="button">HTML</button>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

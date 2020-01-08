@@ -80,7 +80,7 @@
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand logo" href="/">
-                                <img src="assets/images/logo.png" alt="Logo">
+                                <img src="./demo/brand/logo.png" class="header-brand-img" alt="recruitskill logo">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="toggler-icon"></span>

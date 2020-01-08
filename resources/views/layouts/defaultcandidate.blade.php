@@ -58,7 +58,7 @@
                         <span class="nav-unread"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a href="/notifications" class="dropdown-item d-flex">
+                        <a href="/candidate-notifications" class="dropdown-item d-flex">
                             <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
                             <div>
                                 <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
@@ -68,7 +68,7 @@
                                 <i class="fe fe-external-link"></i>
                             </span>
                         </a>
-                        <a href="notifications" class="dropdown-item d-flex">
+                        <a href="/candidate-notifications" class="dropdown-item d-flex">
                             <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
                             <div>
                             <strong>Alice</strong> started new task: Tabler UI design.
@@ -78,7 +78,7 @@
                                 <i class="fe fe-external-link"></i>
                             </span>
                         </a>
-                        <a href="/notifications" class="dropdown-item d-flex">
+                        <a href="/candidate-notifications" class="dropdown-item d-flex">
                             <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
                             <div>
                             <strong>Rose</strong> deployed new version of NodeJS REST Api V3
