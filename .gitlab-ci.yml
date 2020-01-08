@@ -20,6 +20,7 @@ building:
     - chmod -R ug+rwx storage bootstrap/cache
 
 
+
 deploying:
   stage: deploy
   script:
