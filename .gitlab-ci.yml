@@ -4,9 +4,11 @@ before_script:
 building:
   stage: build
   script:
+    - git init
     - git reset --hard
     - git pull origin develop
     - composer install
+    - yarn install
     - cp .env.example .env
     - php artisan key:generate
     - php artisan migrate --seed
