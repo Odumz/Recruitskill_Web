@@ -1,6 +1,6 @@
 before_script:
   - echo "Before script"
-  - cd /var/www/recruitskill #your project path
+  - cd /var/www/recruitskill-web #your project path
 building:
   stage: build
   script:
@@ -13,9 +13,9 @@ building:
     - php artisan cache:clear
     - php artisan config:clear
     - php artisan storage:link
-    - sudo chown -R deployer:www-data /var/www/recruitskill/
-    - find /var/www/recruitskill -type f -exec chmod 664 {} \;
-    - find /var/www/recruitskill -type d -exec chmod 775 {} \;
+    - sudo chown -R deployer:www-data /var/www/recruitskill-web/
+    - find /var/www/recruitskill-web -type f -exec chmod 664 {} \;
+    - find /var/www/recruitskill-web -type d -exec chmod 775 {} \;
     - chgrp -R www-data storage bootstrap/cache
     - chmod -R ug+rwx storage bootstrap/cache
 
