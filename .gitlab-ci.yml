@@ -6,7 +6,7 @@ building:
   script:
     - git init
     - git reset --hard
-    - git pull origin develop
+    - git pull master master
     - composer install
     - yarn install
     - cp .env.example .env
