@@ -5,7 +5,7 @@ building:
   stage: build
   script:
     - git reset --hard
-    - git pull -u origin master
+    - git pull origin master
     - composer install
     - yarn install
     - cp .env.example .env
