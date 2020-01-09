@@ -5,6 +5,7 @@ building:
   stage: build
   script:
     - git reset --hard
+    - git remote add origin git@gitlab.com:ekoicentre/recruitskill-web.git
     - git pull origin master
     - composer install
     - yarn install
