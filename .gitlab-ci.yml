@@ -4,7 +4,7 @@ before_script:
 building:
   stage: build
   script:
-    - git clone https://gitlab.com/ekoicentre/recruitskill-web.git
+    - git clone git@gitlab.com:ekoicentre/recruitskill-web.git
     - composer install
     - yarn install
     - cp .env.example .env
