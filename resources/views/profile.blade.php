@@ -11,13 +11,14 @@
     <div class="card-header" style="background-image: url(demo/photos/eberhard-grossgasteiger-311213-500.jpg);"></div>
     <div class="card-body text-center">
         <img class="card-profile-img" src="demo/faces/male/16.jpg">
-        <h3 class="mb-3">Peter Richards</h3>
+        <h3 class="mb-3">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
         <p class="mb-4">
             Big belly rude boy, million dollar hustler. Unemployed.
         </p>
     </div>
 </div>
-<form class="card col-12">
+<form class="card col-12" method="post" action="/profile" enctype="multipart/form-data">
+    {{ csrf_field() }}>
     <div class="card-body">
         <h3 class="card-title">Company Profile</h3>
         <div class="row">

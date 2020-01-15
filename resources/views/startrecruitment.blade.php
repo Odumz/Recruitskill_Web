@@ -22,7 +22,8 @@
                 <div class="card-body">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="/recruitment" enctype="multipart/form-data">
+                                {{ csrf_field() }}>
                                 {{-- <div class="row">
                                 <div class="col-auto">
                                     <span class="avatar avatar-xl" style="background-image: url(demo/faces/female/9.jpg)"></span>
@@ -351,7 +352,7 @@
                                 </div> --}}
                                 <div class="form-footer d-flex">
                                     <button class="btn btn-link col-sm-2 mr-auto">Previous</button>
-                                    <button class="btn btn-primary col-sm-2 ml-auto">Submit</button>
+                                    <button type="submit" class="btn btn-primary col-sm-2 ml-auto">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -362,7 +363,7 @@
                 require(['input-mask']);
             </script>
         </div>
-        
+
         <div class="col-md-3 col-xl-3">
             <div class="card">
                 <div class="card-status bg-orange"></div>

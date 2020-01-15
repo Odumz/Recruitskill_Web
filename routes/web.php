@@ -26,11 +26,12 @@ Auth::routes();
 
 // Route::get('user', 'UserController');
 
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/dashboard', 'HomeController@home');
 
-Route::get('/published-recruitment', 'HomeController@publishedRecruitment');
+Route::get('/published-recruitment', ['uses' => 'RecruitmentController@index']);
 
 Route::get('/ongoing-recruitment', 'HomeController@ongoingRecruitment');
 

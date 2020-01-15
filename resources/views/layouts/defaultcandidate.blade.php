@@ -101,17 +101,17 @@
                         </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="profile.html">
+                        <a class="dropdown-item" href="/candidate-profile">
                             <i class="dropdown-icon fe fe-user"></i> Profile
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/candidateaccountsettings">
                             <i class="dropdown-icon fe fe-settings"></i> Settings
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/invites">
                             <span class="float-right"><span class="badge badge-primary">6</span></span>
                             <i class="dropdown-icon fe fe-mail"></i> Invites
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/upcominginterviews">
                             <i class="dropdown-icon fe fe-send"></i> Interviews
                         </a>
                         <div class="dropdown-divider"></div>
