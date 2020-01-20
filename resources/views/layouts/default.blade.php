@@ -97,7 +97,7 @@
                         <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
                         <span class="ml-2 d-none d-lg-block">
                             <span class="text-default">{{ Auth::user()->first_name }}</span>
-                            <small class="text-muted d-block mt-1">Administrator</small>
+                            <small class="text-muted d-block mt-1">{{ Auth::user()->company_name }}</small>
                         </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -112,7 +112,7 @@
                             <i class="dropdown-icon fe fe-file-text"></i> Applications
                         </a> --}}
                         <a class="dropdown-item" href="/upcoming-interview">
-                            <span class="float-right"><span class="badge badge-primary">6</span></span>
+                            <span class="float-right"><span class="badge badge-primary">0</span></span>
                             <i class="dropdown-icon fe fe-calendar"></i> Interviews
                         </a>
                         <div class="dropdown-divider"></div>
@@ -215,7 +215,7 @@
                     <li><a href="#">Second link</a></li>
                   </ul>
                 </div>
-                <div class="col-6 col-md-3">
+                <div classaccountsettings="col-6 col-md-3">
                   <ul class="list-unstyled mb-0">
                     <li><a href="#">Third link</a></li>
                     <li><a href="#">Fourth link</a></li>

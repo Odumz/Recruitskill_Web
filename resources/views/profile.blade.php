@@ -18,7 +18,7 @@
     </div>
 </div>
 <form class="card col-12" method="post" action="/profile" enctype="multipart/form-data">
-    {{ csrf_field() }}>
+    {{ csrf_field() }}
     <div class="card-body">
         <h3 class="card-title">Company Profile</h3>
         <div class="row">

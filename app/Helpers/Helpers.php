@@ -8,7 +8,7 @@ class Helper {
     public static function getRSRequest(string $route, $output="json")
     {
         $client = new Client();
-        $request = $client->get('https://apilearnbase.herokuapp.com/'.$route);
+        $request = $client->get('https://recruitskillapi.herokuapp.com/api/v1/'.$route);
         $response = $request->getBody()->getContents();
         $project = json_decode($response);
         return $project;

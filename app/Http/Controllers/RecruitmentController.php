@@ -28,12 +28,30 @@ class RecruitmentController extends Controller
     //     return response()->json(Recruitment::all());
     // }
 
-    public function index()
+    public function publishedRecruitment()
     {
         // return Helper::getRSRequest('api/courses');
-        $response = Helper::getRSRequest('api/courses');
+        $response = Helper::getRSRequest('recruit/published-recruitment');
         // $recruitment = json_decode(json_encode($response));
         return view('publishedrecruitment', compact('response'));
+        // return view('publishedrecruitment')->with('recruitment', $response);
+    }
+
+    public function ongoingRecruitment()
+    {
+        // return Helper::getRSRequest('api/courses');
+        $response = Helper::getRSRequest('recruit/ongoing-recruitment');
+        // $recruitment = json_decode(json_encode($response));
+        return view('ongoingrecruitment', compact('response'));
+        // return view('publishedrecruitment')->with('recruitment', $response);
+    }
+
+    public function concludedRecruitment()
+    {
+        // return Helper::getRSRequest('api/courses');
+        $response = Helper::getRSRequest('recruit/concluded-recruitment');
+        // $recruitment = json_decode(json_encode($response));
+        return view('concludedrecruitment', compact('response'));
         // return view('publishedrecruitment')->with('recruitment', $response);
     }
 }

@@ -27,11 +27,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($response as $item)
                     <tr>
-                    <td><span class="text-muted">001401</span></td>
-                    <td><a href="invoice.html" class="text-inherit">Design Works</a></td>
+                    <td><span class="text-muted">{{$item->id ?? ''}}</span></td>
+                    <td><a href="invoice.html" class="text-inherit">{{$item->title ?? ''}}</a></td>
                     <td>
-                        Carlson Limited
+                        {{$item->duration ?? ''}}
                     </td>
                     <td>
                         87956621
@@ -55,7 +56,7 @@
                         </a>
                     </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                     <td><span class="text-muted">001402</span></td>
                     <td><a href="invoice.html" class="text-inherit">UX Wireframes</a></td>
                     <td>
@@ -194,7 +195,8 @@
                             <i class="fe fe-edit"></i>
                         </a>
                     </td>
-                    </tr>
+                    </tr> --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

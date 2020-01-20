@@ -115,7 +115,7 @@
                                 <a class="main-btn" href="{{ route('login') }}">Login</a>
                             </div>
                             <div class="navbar-btn d-none d-sm-inline-block">
-                                <a class="user-btn" href="/candidate">For Candidates</a>
+                                <a class="user-btn" href="/">For Recruiters</a>
                             </div>
                         </nav> <!-- navbar -->
                     </div>

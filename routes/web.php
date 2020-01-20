@@ -18,6 +18,10 @@ Route::get('/landing', function () {
     return view('welcome');
 });
 
+Route::get('/candidate', function () {
+    return view('candidatelanding');
+});
+
 Route::get('/', function () {
     return view('landing');
 });
@@ -29,13 +33,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/dashboard', 'HomeController@home');
+Route::get('/dashboard', ['uses' => 'HomeController@everything']);
 
-Route::get('/published-recruitment', ['uses' => 'RecruitmentController@index']);
+// Route::get('/dashboard', ['uses' => 'HomeController@home']);
 
-Route::get('/ongoing-recruitment', 'HomeController@ongoingRecruitment');
+// Route::get('/dashboard', ['uses' => 'HomeController@home', 'HomeController@indexPublishedRecruitment', 'HomeController@indexConcludedRecruitment', 'HomeController@indexOngoingRecruitment', 'HomeController@indexApplication']);
 
-Route::get('/concluded-recruitment', 'HomeController@concludedRecruitment');
+Route::get('/published-recruitment', ['uses' => 'RecruitmentController@publishedRecruitment']);
+
+Route::get('/ongoing-recruitment', ['uses' => 'RecruitmentController@ongoingRecruitment']);
+
+Route::get('/concluded-recruitment', ['uses' => 'RecruitmentController@concludedRecruitment']);
 
 Route::get('/applications', 'HomeController@applications');
 

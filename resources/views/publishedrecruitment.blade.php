@@ -29,10 +29,10 @@
               <tbody>
                   @foreach ($response as $item)
                 <tr>
-                  <td><span class="text-muted">{{$item->id}}</span></td>
-                <td><a href="invoice.html" class="text-inherit">{{$item->title}}</a></td>
+                  <td><span class="text-muted">{{$item->id ?? ''}}</span></td>
+                <td><a href="invoice.html" class="text-inherit">{{$item->title ?? ''}}</a></td>
                   <td>
-                    {{$item->duration}}
+                    {{$item->duration ?? ''}}
                   </td>
                   <td>
                     87956621

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,6 +30,69 @@ class HomeController extends Controller
     public function home()
     {
         return view('index');
+    }
+
+
+    // public function home()
+    // {
+    //     $response = Helper::getRSRequest('recruit/');
+    //     return view('index', compact('response'));
+    // }
+
+
+    public function indexPublishedRecruitment()
+    {
+        $pr = Helper::getRSRequest('recruit/published-recruitment');
+       // echo $pr;
+        return view('index', compact('pr'));
+    }
+
+    public function indexConcludedRecruitment()
+    {
+        $cr = Helper::getRSRequest('recruit/concluded-recruitment');
+        return view('index', compact('cr'));
+    }
+
+    public function indexOngoingRecruitment()
+    {
+        $or = Helper::getRSRequest('recruit/ongoing-recruitment');
+        return view('index', compact('or'));
+    }
+
+    public function indexApplications()
+    {
+        $app = Helper::getRSRequest('recruit/applications');
+        return view('index', compact('app'));
+    }
+
+    public function indexShortlistedCandidate()
+    {
+        $shc = Helper::getRSRequest('recruit/shortlisted-candidate');
+        return view('index', compact('response'));
+    }
+
+    public function indexOnboardedCandidate()
+    {
+        $onc = Helper::getRSRequest('recruit/onboarded-candidate');
+        return view('index', compact('response'));
+    }
+
+    public function indexUpcomingInterview()
+    {
+        $upint = Helper::getRSRequest('recruit/upcoming-interview');
+        return view('index', compact('response'));
+    }
+
+    public function everything()
+    {
+        $publishedrecruitment = Helper::getRSRequest('recruit/published-recruitment');
+        $upcominginterview = Helper::getRSRequest('recruit/upcoming-interview');
+        $onboardedcandidate = Helper::getRSRequest('recruit/onboarded-candidate');
+        $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
+        $applications = Helper::getRSRequest('recruit/application');
+        $ongoingrecruitment = Helper::getRSRequest('recruit/ongoing-recruitment');
+        $concludedrecruitment = Helper::getRSRequest('recruit/concluded-recruitment');
+        return view('index', compact('publishedrecruitment','upcominginterview','onboardedcandidate','shortlistedcandidate','applications','ongoingrecruitment','concludedrecruitment'));
     }
 
     public function publishedRecruitment()
@@ -68,21 +132,25 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view('profile');
+        $userprofile = Helper::getRSRequest('recruit/user_profile');
+        return view('profile', compact('userprofile'));
     }
 
     public function notification()
     {
-        return view('notification');
+        $notification = Helper::getRSRequest('recruit/notifications');
+        return view('notification', compact('notification'));
     }
 
     public function accountSettings()
     {
-        return view('accountsettings');
+        $settings = Helper::getRSRequest('recruit/user_profile');
+        return view('accountsettings', compact('settings'));
     }
 
     public function upcomingInterview()
     {
-        return view('upcominginterviews');
+        $upcominginterview = Helper::getRSRequest('recruit/upcoming-interview');
+        return view('upcominginterviews', compact('upcominginterview'));
     }
 }

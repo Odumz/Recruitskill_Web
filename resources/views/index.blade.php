@@ -48,9 +48,11 @@
                     </div> --}}
                     <a href="/published-recruitment">
                     <div class="card-body">
+                        {{-- @foreach ($pr as $item) --}}
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">23</h3>
+                            <h3 class="mb-1">{{count($publishedrecruitment) ?? '0'}}</h3>
                         <div class="text-muted">Published Recruitments</div>
+                        {{-- @endforeach --}}
                     </div>
                     </a>
                 </div>
@@ -68,7 +70,7 @@
                     <a href="/ongoing-recruitment">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">4</h3>
+                            <h3 class="mb-1">{{count($ongoingrecruitment) ?? '0'}}</h3>
                         <div class="text-muted">Ongoing Recruitments</div>
                     </div>
                     </a>
@@ -87,7 +89,7 @@
                     <a href="/concluded-recruitment">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">20</h3>
+                            <h3 class="mb-1">{{count($concludedrecruitment) ?? '0'}}</h3>
                         <div class="text-muted">Concluded Recruitments</div>
                     </div>
                     </a>
@@ -113,7 +115,7 @@
                     <a href="/applications">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">423</h3>
+                            <h3 class="mb-1">{{count($applications) ?? '0'}}</h3>
                         <div class="text-muted">Applications</div>
                     </div>
                     </a>
@@ -132,7 +134,7 @@
                     <a href="/shortlisted-candidate">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">45</h3>
+                            <h3 class="mb-1">{{count($shortlistedcandidate) ?? '0'}}</h3>
                         <div class="text-muted">Shortlisted Candidates</div>
                     </div>
                 </div>
@@ -150,7 +152,7 @@
                     <a href="{{url('/onboarded-candidate')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">16</h3>
+                            <h3 class="mb-1">{{count($onboardedcandidate) ?? '0'}}</h3>
                         <div class="text-muted">Onboarded Candidates</div>
                     </div>
                 </div>
@@ -168,7 +170,7 @@
                     <a href="{{url('/upcoming-interview')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">24</h3>
+                            <h3 class="mb-1">{{count($upcominginterview) ?? '0'}}</h3>
                         <div class="text-muted">Upcoming Interviews</div>
                     </div>
                 </div>
