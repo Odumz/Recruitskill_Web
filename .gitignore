@@ -13,7 +13,7 @@ yarn-error.log
 
 
 
-temp.txt
+*.txt
 public/js/assets/adataTables.bootstrap4.min.js
 public/js/assets/ajquery.dataTables.min.js
 public/js/assets/angular.min.js

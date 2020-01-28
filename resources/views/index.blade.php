@@ -30,6 +30,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="card py-3">
+            <form method="post" action="/jobtitle" enctype="application/json">
+            {{ csrf_field() }}
+            <div class="col-12 form-group">
+                <div class="input-group">
+                    {{-- <input type="hidden" name="users_id" name = "users_id" value="{{ Auth::user()->id }}"> --}}
+                    <input type="text" id="job_title" name="job_title" class="form-control" placeholder="Search for...">
+                    <span class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Go!</button>
+                    </span>
+                </div>
+            </div>
+            </form>
+        </div>
+
         <div class="page-header">
             <h4 class="page-subtitle">
                 <i class="fa fa-dashboard" style="color: blue;"></i> Recruitments

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -16,7 +16,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
     <title>RecruitSkill | Home </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     {{-- <script src="./js/require.min.js"></script>
     <script>
@@ -97,7 +98,7 @@
                         <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
                         <span class="ml-2 d-none d-lg-block">
                             <span class="text-default">{{ Auth::user()->first_name }}</span>
-                            <small class="text-muted d-block mt-1">Administrator</small> {{-- {{ user_profile()->career_title}} --}}
+                            <small class="text-muted d-block mt-1">{{ Auth::user()->id}}</small>
                         </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -111,7 +112,7 @@
                             <span class="float-right"><span class="badge badge-primary">6</span></span>
                             <i class="dropdown-icon fe fe-mail"></i> Invites
                         </a>
-                        <a class="dropdown-item" href="/upcominginterviews">
+                        <a class="dropdown-item" href="/candidate-upcoming-interviews">
                             <i class="dropdown-icon fe fe-send"></i> Interviews
                         </a>
                         <div class="dropdown-divider"></div>
@@ -258,6 +259,8 @@
                   <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
                     <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
+                    <li class="list-inline-item"><a href="/"><i class="fab fa-google-play"></i></li>
+                    <li class="list-inline-item"><a href="/"><i class="fab fa-app-store-ios"></i></li>
                   </ul>
                 </div>
                 {{-- <div class="col-auto">

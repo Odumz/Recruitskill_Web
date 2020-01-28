@@ -30,9 +30,9 @@
                     @foreach ($response as $item)
                     <tr>
                     <td><span class="text-muted">{{$item->id ?? ''}}</span></td>
-                    <td><a href="invoice.html" class="text-inherit">{{$item->title ?? ''}}</a></td>
+                    <td><a href="invoice.html" class="text-inherit">{{$item->alias ?? ''}}</a></td>
                     <td>
-                        {{$item->duration ?? ''}}
+                        {{-- {{$item->$recruitment[job_title] ?? ''}} --}}Hello
                     </td>
                     <td>
                         87956621
@@ -45,13 +45,20 @@
                     </td>
                     <td>$887</td>
                     <td class="text-right">
-                        <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                        </div>
+                        <form action="/delete/$item->id" method="POST">
+                            {{ csrf_field() }}
+                            {{-- {{ method_field('DELETE') }} --}}
+                            @method('DELETE')
+                            <input type="hidden" name="item_id" name = "item_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        {{-- <a href="/delete" class="btn btn-danger btn-sm">Delete</a> --}}
+                        {{-- <div class="dropdown">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">{{ $item-> id ?? ''}}</button>
+                        </div> --}}
                     </td>
                     <td>
-                        <a class="icon" href="javascript:void(0)">
+                        <a class="icon" href="/edit">
                             <i class="fe fe-edit"></i>
                         </a>
                     </td>

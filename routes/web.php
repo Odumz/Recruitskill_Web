@@ -59,6 +59,8 @@ Route::get('/notifications', 'HomeController@notification');
 
 Route::get('/start-recruitment', 'HomeController@startRecruitment');
 
+// Route::get('/start-recruitment', 'HomeController@store');
+
 Route::get('/upcoming-interview', 'HomeController@upcomingInterview');
 
 Route::get('/candidate-dashboard', 'CandidateController@home');
@@ -77,7 +79,7 @@ Route::get('/academy', 'CandidateController@academy');
 
 Route::get('/verifications', 'CandidateController@verification');
 
-Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
+// Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
 
 Route::get('candidate-profile', 'CandidateController@profile');
 
@@ -85,12 +87,23 @@ Route::get('candidate-account-settings', 'CandidateController@accountSettings');
 
 Route::get('candidate-notifications', 'CandidateController@notification');
 
-Route::get('candidate/start-recruitment', 'CandidateController@startRecruitment');
+Route::get('/candidate-upcoming-interviews', 'CandidateController@upcomingInterview');
 
 Route::get('doscountry', ['uses' => 'CountryController@getAllCountries']);
 
 Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry']);
 
+Route::post('/jobtitle', 'RecruitmentController@postJobTitle');
+
+Route::delete('/delete/{id}', 'RecruitmentController@deleteJobTitle');
+
+Route::post('/ongoing-recruitment/edit/{id}', 'RecruitmentController@updateOngoing');
+
+Route::get('/edit', ['uses' => 'RecruitmentController@edit', 'RecruitmentController@ongoingRecruitment']);
+
+Route::get('/edit-shortlisted-candidate/{id}', ['uses' => 'RecruitmentController@editCandidate']);
+
+Route::delete('/delete/candidate/{id}', 'RecruitmentController@deleteCandidate');
 
 
 

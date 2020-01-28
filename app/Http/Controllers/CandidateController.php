@@ -56,8 +56,8 @@ class CandidateController extends Controller
         return view('verification');
     }
 
-    public function onboardedCandidate()
+    public function upcomingInterview()
     {
-        return view('onboardedcandidate');
+        return view('candidateupcominginterviews');
     }
 }

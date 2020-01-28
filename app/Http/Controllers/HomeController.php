@@ -92,6 +92,7 @@ class HomeController extends Controller
         $applications = Helper::getRSRequest('recruit/application');
         $ongoingrecruitment = Helper::getRSRequest('recruit/ongoing-recruitment');
         $concludedrecruitment = Helper::getRSRequest('recruit/concluded-recruitment');
+        // dd($shortlistedcandidate);
         return view('index', compact('publishedrecruitment','upcominginterview','onboardedcandidate','shortlistedcandidate','applications','ongoingrecruitment','concludedrecruitment'));
     }
 
@@ -122,7 +123,10 @@ class HomeController extends Controller
 
     public function shortlistedCandidate()
     {
-        return view('shortlistedcandidate');
+        $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
+        // dd($candidate);
+        return view('shortlistedcandidate', compact('shortlistedcandidate'));
+        // return view('shortlistedcandidate');
     }
 
     public function onboardedCandidate()
@@ -130,7 +134,7 @@ class HomeController extends Controller
         return view('onboardedcandidate');
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
         $userprofile = Helper::getRSRequest('recruit/user_profile');
         return view('profile', compact('userprofile'));
@@ -152,5 +156,14 @@ class HomeController extends Controller
     {
         $upcominginterview = Helper::getRSRequest('recruit/upcoming-interview');
         return view('upcominginterviews', compact('upcominginterview'));
+    }
+
+    public function store()
+    {
+        var_dump(request('job_title'));
+        // var_dump(request('publisher'));
+        // var_dump(request('releasedate'));
+        // var_dump(request('image'));
+
     }
 }

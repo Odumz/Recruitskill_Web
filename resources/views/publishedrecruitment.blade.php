@@ -45,13 +45,13 @@
                   </td>
                   <td>$887</td>
                   <td class="text-right">
-                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
+                    <a href="" class="btn btn-secondary btn-sm">Manage</a>
                     <div class="dropdown">
                       <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                     </div>
                   </td>
                   <td>
-                    <a class="icon" href="javascript:void(0)">
+                    <a class="icon" href="">
                       <i class="fe fe-edit"></i>
                     </a>
                   </td>

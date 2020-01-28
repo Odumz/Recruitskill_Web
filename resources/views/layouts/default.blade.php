@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -16,7 +16,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
     <title>RecruitSkill | Home </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     {{-- <script src="./js/require.min.js"></script>
     <script>
@@ -38,6 +39,7 @@
     <script src="./plugins/maps-google/plugin.js"></script>
     <!-- Input Mask Plugin -->
     <script src="./plugins/input-mask/plugin.js"></script>
+    @yield('headtags')
   </head>
   <body class="">
     <div class="page">
@@ -107,10 +109,10 @@
                         <a class="dropdown-item" href="/account-settings">
                             <i class="dropdown-icon fe fe-settings"></i> Settings
                         </a>
-                        {{-- <a class="dropdown-item" href="/applications">
-                            <span class="float-right"><span class="badge badge-primary">6</span></span>
-                            <i class="dropdown-icon fe fe-file-text"></i> Applications
-                        </a> --}}
+                        <a class="dropdown-item" href="/applications">
+                            {{-- <span class="float-right"><span class="badge badge-primary">6</span></span> --}}
+                            <i class="dropdown-icon fe fe-layers"></i> Applications
+                        </a>
                         <a class="dropdown-item" href="/upcoming-interview">
                             <span class="float-right"><span class="badge badge-primary">0</span></span>
                             <i class="dropdown-icon fe fe-calendar"></i> Interviews
@@ -202,6 +204,7 @@
                 </div>
                 </div>
             </div>
+            @include('flashmessage')
             @yield('content')
         </div>
       {{-- <div class="footer">
@@ -250,6 +253,8 @@
                   <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><a href="/">Documentation</a></li>
                     <li class="list-inline-item"><a href="/">FAQ</a></li>
+                    <li class="list-inline-item"><a href="/"><i class="fab fa-google-play"></i></li>
+                    <li class="list-inline-item"><a href="/"><i class="fab fa-app-store-ios"></i></li>
                   </ul>
                 </div>
                 {{-- <div class="col-auto">

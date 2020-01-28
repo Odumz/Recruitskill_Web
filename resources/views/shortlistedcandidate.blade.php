@@ -10,9 +10,9 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Application 1</h3>
-            <div class="card-options">
-                <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-            </div>
+            {{-- <div class="card-options">
+                <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+            </div> --}}
         </div>
         <div class="table-responsive">
         <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
@@ -25,9 +25,11 @@
               <th>Activity</th>
               <th class="text-center">Satisfaction</th>
               <th class="text-center"><i class="icon-settings"></i></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($shortlistedcandidate as $item)
             <tr>
               <td class="text-center">
                 <div class="avatar d-block" style="background-image: url(demo/faces/female/26.jpg)">
@@ -35,7 +37,7 @@
                 </div>
               </td>
               <td>
-                <div>Elizabeth Martin</div>
+                <div>{{ $item->user_id }}</div>
                 <div class="small text-muted">
                   Registered: Mar 19, 2018
                 </div>
@@ -67,7 +69,7 @@
                 </div>
               </td>
               <td class="text-center">
-                <div class="item-action dropdown">
+                {{-- <div class="item-action dropdown">
                   <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
                   <div class="dropdown-menu dropdown-menu-right">
                     <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Action </a>
@@ -76,10 +78,25 @@
                     <div class="dropdown-divider"></div>
                     <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Separated link</a>
                   </div>
-                </div>
+                </div> --}}
+                <form action="/delete/candidate/$item->id" method="POST">
+                    {{ csrf_field() }}
+                    {{-- {{ method_field('DELETE') }} --}}
+                    @method('DELETE')
+                    <input type="hidden" name="item_id" name = "item_id" value="{{ $item->id }}">
+                    <button type="submit" class="btn btn-icon btn-sm btn-primary btn-danger">
+                        <i class="fe fe-trash-2"></i>
+                     </button>
+                </form>
               </td>
+              <td>
+                    <a class="icon" href="/edit-shortlisted-candidate/$item->id">
+                        <i class="fe fe-edit"></i>
+                    </a>
+                </td>
             </tr>
-            <tr>
+            @endforeach
+            {{-- <tr>
               <td class="text-center">
                 <div class="avatar d-block" style="background-image: url(demo/faces/female/17.jpg)">
                   <span class="avatar-status bg-green"></span>
@@ -435,7 +452,7 @@
                   </div>
                 </div>
               </td>
-            </tr>
+            </tr> --}}
           </tbody>
         </table>
       </div>
