@@ -73,7 +73,7 @@
     <div class="row">
         <div class="col col-login mx-auto">
             <div class="text-center mb-6">
-                <img src="./demo/brand/logo.png" class="h-8" alt="recruitskill logo">
+                <a href="/"><img src="./demo/brand/logo.png" class="h-8" alt="recruitskill logo"></a>
             </div>
             <form class="card" action="{{ route('login') }}" method="POST">
                 @csrf
@@ -89,6 +89,7 @@
                             </span>
                         @enderror
                     </div>
+
                     <div class="form-group">
                         <label class="form-label">
                             {{ __('Password') }}

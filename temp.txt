@@ -150,3 +150,22 @@
 
 
 return back()->with('success','Item created successfully!');
+
+
+
+$user = User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'company_name' => $data['company_name'] ?? null,
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response (['user' => $user, 'access_token' => $accessToken]);
+
+
+Authentication request
+
+

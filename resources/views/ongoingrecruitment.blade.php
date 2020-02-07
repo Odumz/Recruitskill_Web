@@ -24,6 +24,7 @@
                         <th>Price</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,13 +45,21 @@
                         <span class="status-icon bg-success"></span> Paid
                     </td>
                     <td>$887</td>
-                    <td class="text-right">
+                    <td>
+                      <a href="#">
+                          <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                              <i class="fe fe-eye"></i>
+                          </button>
+                      </a>
+                    </td>
+                    <td>
                         <form action="/delete/$item->id" method="POST">
                             {{ csrf_field() }}
                             {{-- {{ method_field('DELETE') }} --}}
                             @method('DELETE')
                             <input type="hidden" name="item_id" name = "item_id" value="{{ $item->id }}">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
+                                <i class="fe fe-trash-2"></i></button>
                         </form>
                         {{-- <a href="/delete" class="btn btn-danger btn-sm">Delete</a> --}}
                         {{-- <div class="dropdown">

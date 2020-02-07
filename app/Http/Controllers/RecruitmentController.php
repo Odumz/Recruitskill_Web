@@ -130,27 +130,31 @@ class RecruitmentController extends Controller
     public function updateOngoingRecruitment(Request $request, string $id)
     {
         $id = $request->item_id;
+        // $user_id = $request->user_id;
         $alias = $request->alias;
 
         $fields = [
-            // 'users_id' => $users_id,
+            // 'id' => $id,
+            // 'user_id' => $user_id,
             'alias' => $alias,
         ];
 
         $response = Helper::putRSRequest('recruit/ongoingrecruitment/', $fields, $id, $post_details=null);
     }
 
-    public function updateShortlistedCandidte(Request $request, string $id)
+    public function updateShortlistedCandidate(Request $request, string $id)
     {
         $id = $request->item_id;
-        $alias = $request->alias;
+        $user_id = $request->user_id;
 
         $fields = [
-            // 'users_id' => $users_id,
-            'alias' => $alias,
+            'user_id' => $user_id,
         ];
 
-        $response = Helper::putRSRequest('recruit/shortlisted-candidte/', $fields, $id, $post_details=null);
+        // $update = Helper::putRSRequest('recruit/shortlisted-candidate/', $fields, $id, $post_details=null);
+        $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
+        return view ('shortlistedcandidate', compact('shortlistedcandidate'));
+        // return back()->with('error','Item updated successfully!');
     }
 
     public function edit()
@@ -170,18 +174,20 @@ class RecruitmentController extends Controller
         return back()->with('success','Item deleted successfully!');
     }
 
-    public function editCandidate(Request $request, string $id)
+    public function editCandidate(Request $request)
     {
-        $id = $request->item_id;
-        $user_id = $request->user_id;
+        // $id = $request->item_id;
+        // $user_id = $request->user_id;
 
-        $fields = [
-            // 'users_id' => $users_id,
-            'user_id' => $user_id,
-        ];
+        // $fields = [
+        //     // 'users_id' => $users_id,
+        //     'user_id' => $user_id,
+        // ];
 
-        $response = Helper::putRSRequest('recruit/shortlisted-candidate', $fields, $id);
-        $answer = Helper::getRSRequest('/recruit/shortlisted-candidate');
-        return view ('editshortlistedcandidate', compact('answer'));
+        // $response = Helper::putRSRequest('recruit/shortlisted-candidate', $fields, $id);
+        // $answer = Helper::getRSRequest('/recruit/shortlisted-candidate');
+
+        $response = Helper::getRSRequest('recruit/shortlisted-candidate');
+        return view ('editshortlistedcandidate', compact('response'));
     }
 }

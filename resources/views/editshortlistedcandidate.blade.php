@@ -90,7 +90,7 @@
                 </form>
               </td>
               <td>
-                <form action="/shortlisted/edit/$item->id" method="POST" enctype="application/json">
+                <form action="/edit-shortlisted/$item->id" method="POST" enctype="application/json">
                     {{ csrf_field() }}
                     {{-- {{ method_field('DELETE') }} --}}
                     @method('PUT')

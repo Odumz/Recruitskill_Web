@@ -62,7 +62,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="/published-recruitment">
+                    <a href="{{ route('publishedrecruitment')}}">
                     <div class="card-body">
                         {{-- @foreach ($pr as $item) --}}
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
@@ -83,7 +83,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="/ongoing-recruitment">
+                    <a href="{{ route('ongoingrecruitment')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($ongoingrecruitment) ?? '0'}}</h3>
@@ -102,7 +102,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="/concluded-recruitment">
+                    <a href="{{ route('concludedrecruitment')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($concludedrecruitment) ?? '0'}}</h3>
@@ -128,7 +128,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="/applications">
+                    <a href="{{ route('applications')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($applications) ?? '0'}}</h3>
@@ -147,7 +147,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="/shortlisted-candidate">
+                    <a href="{{ route('shortlistedcandidate')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($shortlistedcandidate) ?? '0'}}</h3>
@@ -165,7 +165,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="{{url('/onboarded-candidate')}}">
+                    <a href="{{ route('onboardedcandidate')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($onboardedcandidate) ?? '0'}}</h3>
@@ -183,7 +183,7 @@
                             <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
                         </div>
                     </div> --}}
-                    <a href="{{url('/upcoming-interview')}}">
+                    <a href="{{ route('upcominginterview')}}">
                     <div class="card-body">
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
                             <h3 class="mb-1">{{count($upcominginterview) ?? '0'}}</h3>

@@ -48,10 +48,12 @@ class Helper {
         try {
             $client = new Client();
             $url = 'http://127.0.0.1:8080/api/v1/'.$route.$id;
-            $request = $client->request('PUT', $url, ['query'=>['fields' => $fields]]);
+            $request = $client->request('PUT', $url, [
+                'form_params' => $fields
+            ]);
             // $request = $client->post($url, ['form_params' => $fields]);
-            $responseJSON = $request->getBody()->getContents();
-            return $responseJSON;
+            // $responseJSON = $request->getBody()->getContents();
+            // return $request;
         } catch (\GuzzleHttp\Exception\RequestException $e) {
             $responseJSON = $e->getResponse();
         }

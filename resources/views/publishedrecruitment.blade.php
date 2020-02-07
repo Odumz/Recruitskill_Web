@@ -44,11 +44,23 @@
                     <span class="status-icon bg-success"></span> Paid
                   </td>
                   <td>$887</td>
-                  <td class="text-right">
-                    <a href="" class="btn btn-secondary btn-sm">Manage</a>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                    </div>
+                  <td>
+                    <a href="#">
+                        <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                            <i class="fe fe-eye"></i>
+                        </button>
+                    </a>
+                  </td>
+                  <td>
+                    <form action="/delete/candidate" method="POST">
+                        {{ csrf_field() }}
+                        {{-- {{ method_field('DELETE') }} --}}
+                        @method('DELETE')
+                        <input type="hidden" name="item_id" name = "item_id" value="">
+                        <button type="submit" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
+                            <i class="fe fe-trash-2"></i>
+                         </button>
+                    </form>
                   </td>
                   <td>
                     <a class="icon" href="">

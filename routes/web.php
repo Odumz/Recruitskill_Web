@@ -14,15 +14,26 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/landing', function () {
+Route::get('/land', function () {
     return view('welcome');
 });
 
+// Route::get('/candidate', function () {
+//     return view('candidatelanding');
+// });
+
+// Route::get('/candidate', 'CandidateController@landing');
+
 Route::get('/candidate', function () {
+    session()->put('hasCompany', false);
+    // dd(session('hasCompany'));
     return view('candidatelanding');
 });
 
+// Route::get('/', 'HomeController@landing');
+
 Route::get('/', function () {
+    session()->put('hasCompany', true);
     return view('landing');
 });
 
@@ -33,77 +44,79 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/dashboard', ['uses' => 'HomeController@everything']);
+Route::get('/dashboard', ['uses' => 'HomeController@everything'])->name('recruiter')->middleware('recruiter', 'admin');
 
 // Route::get('/dashboard', ['uses' => 'HomeController@home']);
 
 // Route::get('/dashboard', ['uses' => 'HomeController@home', 'HomeController@indexPublishedRecruitment', 'HomeController@indexConcludedRecruitment', 'HomeController@indexOngoingRecruitment', 'HomeController@indexApplication']);
 
-Route::get('/published-recruitment', ['uses' => 'RecruitmentController@publishedRecruitment']);
+Route::get('/published-recruitment', ['uses' => 'RecruitmentController@publishedRecruitment'])->name('publishedrecruitment')->middleware('recruiter', 'admin');
 
-Route::get('/ongoing-recruitment', ['uses' => 'RecruitmentController@ongoingRecruitment']);
+Route::get('/ongoing-recruitment', ['uses' => 'RecruitmentController@ongoingRecruitment'])->name('ongoingrecruitment')->middleware('recruiter', 'admin');
 
-Route::get('/concluded-recruitment', ['uses' => 'RecruitmentController@concludedRecruitment']);
+Route::get('/concluded-recruitment', ['uses' => 'RecruitmentController@concludedRecruitment'])->name('concludedrecruitment')->middleware('recruiter', 'admin');
 
-Route::get('/applications', 'HomeController@applications');
+Route::get('/applications', 'HomeController@applications')->name('applications')->middleware('recruiter', 'admin');
 
-Route::get('/shortlisted-candidate', 'HomeController@shortlistedCandidate');
+Route::get('/shortlisted-candidate', 'HomeController@shortlistedCandidate')->name('shortlistedcandidate')->middleware('recruiter', 'admin');
 
-Route::get('/onboarded-candidate', 'HomeController@onboardedCandidate');
+Route::get('/onboarded-candidate', 'HomeController@onboardedCandidate')->name('onboardedcandidate')->middleware('recruiter', 'admin');
 
-Route::get('/profile', 'HomeController@profile');
+Route::get('/profile', 'HomeController@profile')->name('profile')->middleware('recruiter', 'admin');
 
-Route::get('/account-settings', 'HomeController@accountSettings');
+Route::get('/account-settings', 'HomeController@accountSettings')->name('accountsettings')->middleware('recruiter', 'admin');
 
-Route::get('/notifications', 'HomeController@notification');
+Route::get('/notifications', 'HomeController@notification')->name('notifications')->middleware('recruiter', 'admin');
 
-Route::get('/start-recruitment', 'HomeController@startRecruitment');
+Route::get('/start-recruitment', 'HomeController@startRecruitment')->name('start-recruitment')->middleware('recruiter', 'admin');
 
 // Route::get('/start-recruitment', 'HomeController@store');
 
-Route::get('/upcoming-interview', 'HomeController@upcomingInterview');
+Route::get('/upcoming-interview', 'HomeController@upcomingInterview')->name('upcominginterview')->middleware('recruiter', 'admin');
 
-Route::get('/candidate-dashboard', 'CandidateController@home');
+Route::get('/candidate-dashboard', 'CandidateController@home')->name('candidate')->middleware('candidate', 'admin');
 
-Route::get('/course', 'CandidateController@course');
+Route::get('/course', 'CandidateController@course')->name('course')->middleware('candidate', 'admin');
 
-Route::get('/courses', 'CoursesController@courses');
+Route::get('/courses', 'CoursesController@courses')->name('courses')->middleware('candidate', 'admin');
 
-Route::get('/course-details', 'CoursesController@courseDetails');
+Route::get('/course-details', 'CoursesController@courseDetails')->name('course-details')->middleware('candidate', 'admin');
 
-Route::get('/job-post-detail', 'CandidateController@jobPostDetail');
+Route::get('/job-post-detail', 'CandidateController@jobPostDetail')->name('job-post')->middleware('candidate', 'admin');
 
-Route::get('/career', 'CandidateController@career');
+Route::get('/career', 'CandidateController@career')->name('career')->middleware('candidate', 'admin');
 
-Route::get('/academy', 'CandidateController@academy');
+Route::get('/academy', 'CandidateController@academy')->name('academy')->middleware('candidate', 'admin');
 
-Route::get('/verifications', 'CandidateController@verification');
+Route::get('/verifications', 'CandidateController@verification')->name('verifications')->middleware('candidate', 'admin');
 
 // Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
 
-Route::get('candidate-profile', 'CandidateController@profile');
+Route::get('candidate-profile', 'CandidateController@profile')->name('candidate-profile')->middleware('candidate', 'admin');
 
-Route::get('candidate-account-settings', 'CandidateController@accountSettings');
+Route::get('candidate-account-settings', 'CandidateController@accountSettings')->name('candidate-account-settings')->middleware('candidate', 'admin');
 
-Route::get('candidate-notifications', 'CandidateController@notification');
+Route::get('candidate-notifications', 'CandidateController@notification')->name('candidate-notifications')->middleware('candidate', 'admin');
 
-Route::get('/candidate-upcoming-interviews', 'CandidateController@upcomingInterview');
+Route::get('/candidate-upcoming-interviews', 'CandidateController@upcomingInterview')->name('candidate-upcoming-interview')->middleware('candidate', 'admin');
 
-Route::get('doscountry', ['uses' => 'CountryController@getAllCountries']);
+Route::get('doscountry', ['uses' => 'CountryController@getAllCountries'])->name('doscountry')->middleware('admin');
 
-Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry']);
+Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry'])->name('doscountries')->middleware('admin');
 
-Route::post('/jobtitle', 'RecruitmentController@postJobTitle');
+Route::post('/jobtitle', 'RecruitmentController@postJobTitle')->name('job-title')->middleware('admin');
 
-Route::delete('/delete/{id}', 'RecruitmentController@deleteJobTitle');
+Route::delete('/delete/{id}', 'RecruitmentController@deleteJobTitle')->name('job-title')->middleware('admin');
 
-Route::post('/ongoing-recruitment/edit/{id}', 'RecruitmentController@updateOngoing');
+Route::post('/ongoing-recruitment/edit/{id}', 'RecruitmentController@updateOngoing')->name('doscountry')->middleware('admin', 'recruiter');
 
-Route::get('/edit', ['uses' => 'RecruitmentController@edit', 'RecruitmentController@ongoingRecruitment']);
+Route::get('/edit', ['uses' => 'RecruitmentController@edit'])->name('edit')->middleware('admin', 'recruiter');
 
-Route::get('/edit-shortlisted-candidate/{id}', ['uses' => 'RecruitmentController@editCandidate']);
+Route::get('/edit-shortlisted-candidate', ['uses' => 'RecruitmentController@editCandidate'])->name('edit-candidate')->middleware('admin', 'recruiter');
 
-Route::delete('/delete/candidate/{id}', 'RecruitmentController@deleteCandidate');
+Route::delete('/delete/candidate/{id}', 'RecruitmentController@deleteCandidate')->name('doscountry')->middleware('admin', 'recruiter');
+
+Route::put('/edit-shortlisted/{id}', 'RecruitmentController@updateShortlistedCandidate')->name('update-shortlisted-candidate')->middleware('admin', 'recruiter');
 
 
 

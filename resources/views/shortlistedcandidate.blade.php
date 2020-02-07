@@ -26,6 +26,7 @@
               <th class="text-center">Satisfaction</th>
               <th class="text-center"><i class="icon-settings"></i></th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -68,32 +69,31 @@
                   <div class="chart-circle-value">42%</div>
                 </div>
               </td>
-              <td class="text-center">
-                {{-- <div class="item-action dropdown">
-                  <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Action </a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Another action </a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-message-square"></i> Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Separated link</a>
-                  </div>
-                </div> --}}
-                <form action="/delete/candidate/$item->id" method="POST">
+              <td>
+                <a href="#">
+                    <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                        <i class="fe fe-send"></i>
+                    </button>
+                </a>
+              </td>
+              <td>
+                <a href="#">
+                    <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                        <i class="fe fe-eye"></i>
+                    </button>
+                </a>
+              </td>
+              <td>
+                <form action="/delete/candidate" method="POST">
                     {{ csrf_field() }}
                     {{-- {{ method_field('DELETE') }} --}}
                     @method('DELETE')
-                    <input type="hidden" name="item_id" name = "item_id" value="{{ $item->id }}">
-                    <button type="submit" class="btn btn-icon btn-sm btn-primary btn-danger">
+                    <input type="hidden" name="item_id" name = "item_id" value="">
+                    <button type="submit" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
                         <i class="fe fe-trash-2"></i>
                      </button>
                 </form>
               </td>
-              <td>
-                    <a class="icon" href="/edit-shortlisted-candidate/$item->id">
-                        <i class="fe fe-edit"></i>
-                    </a>
-                </td>
             </tr>
             @endforeach
             {{-- <tr>

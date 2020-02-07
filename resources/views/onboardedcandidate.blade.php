@@ -19,6 +19,7 @@
               <th>User</th>
               <th>Activity</th>
               <th class="text-center"><i class="icon-settings"></i></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -38,20 +39,26 @@
                 <div class="small text-muted">Last login</div>
                 <div>4 minutes ago</div>
               </td>
-              <td class="text-center">
-                <div class="item-action dropdown">
-                  <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Action </a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Another action </a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-message-square"></i> Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-link"></i> Separated link</a>
-                  </div>
-                </div>
+              <td>
+                <a href="#">
+                    <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                        <i class="fe fe-eye"></i>
+                    </button>
+                </a>
+              </td>
+              <td>
+                <form action="/delete/candidate" method="POST">
+                    {{ csrf_field() }}
+                    {{-- {{ method_field('DELETE') }} --}}
+                    @method('DELETE')
+                    <input type="hidden" name="item_id" name = "item_id" value="">
+                    <button type="submit" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
+                        <i class="fe fe-trash-2"></i>
+                     </button>
+                </form>
               </td>
             </tr>
-            <tr>
+            {{-- <tr>
               <td class="text-center">
                 <div class="avatar d-block" style="background-image: url(demo/faces/female/17.jpg)">
                   <span class="avatar-status bg-green"></span>
@@ -253,7 +260,7 @@
                   </div>
                 </div>
               </td>
-            </tr>
+            </tr> --}}
           </tbody>
         </table>
       </div>

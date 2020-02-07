@@ -111,7 +111,7 @@
     <div class="row">
       <div class="col col-login mx-auto">
         <div class="text-center mb-6">
-          <img src="./demo/brand/logo.png" class="h-8" alt="recruitskill logo">
+          <a href="/"><img src="./demo/brand/logo.png" class="h-8" alt="recruitskill logo"></a>
         </div>
         <form class="card" action="{{ route('register') }}" method="POST">
             @csrf
@@ -141,7 +141,7 @@
                 @enderror
             </div>
 
-            @if (URL::previous() == 'http://127.0.0.1:8000/')
+            @if (session('hasCompany'))
 
             <div class="form-group">
                 <label for="company_name" class="form-label">{{ __('Company Name') }}</label>
@@ -154,6 +154,20 @@
                 @enderror
             </div>
 
+            @endif
+
+            @if (session('hasCompany'))
+            <div class="form-group">
+                <input hidden id="role" type="text" class="form-control" name="role" value="2" required>
+            </div>
+            @else
+            <div class="form-group">
+                <input hidden id="role" type="text" class="form-control" name="role" value="3" required>
+            </div>
+            {{-- @else
+            <div class="form-group">
+                <input hidden id="role" type="text" class="form-control" name="role" value="1" required>
+            </div> --}}
             @endif
 
             <div class="form-group">
