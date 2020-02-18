@@ -152,10 +152,10 @@
                     <div class="col-lg order-lg-first">
                     <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                         <li class="nav-item">
-                        <a href="/dashboard" class="nav-link active"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a href="{{ route('recruiter')}}" class="nav-link  {{ (request()->is('dashboard')) ? 'active' : '' }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
-                        <a href="/start-recruitment" class="nav-link""><i class="fa fa-caret-square-o-right"></i> Start Recruitment</a>
+                        <a href="{{ route('startrecruitment')}}" class="nav-link {{ (request()->is('start-recruitment')) ? 'active' : '' }}"><i class="fa fa-caret-square-o-right"></i> Start Recruitment</a>
                         {{-- <div class="dropdown-menu dropdown-menu-arrow">
                             <a href="./cards.html" class="dropdown-item ">Cards design</a>
                             <a href="./charts.html" class="dropdown-item ">Charts</a>

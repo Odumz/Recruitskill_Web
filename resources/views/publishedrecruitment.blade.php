@@ -15,35 +15,50 @@
             <table class="table card-table table-vcenter text-nowrap">
               <thead>
                 <tr>
-                  <th class="w-1">No.</th>
-                  <th>Invoice Subject</th>
-                  <th>Client</th>
-                  <th>VAT No.</th>
-                  <th>Created</th>
+                    <th class="w-1">
+                      <label class="form-check">
+                          <input type="checkbox" class="form-check-input">  {{-- class="custom-control custom-checkbox" class="custom-control-input" --}}
+                      </label>
+                    </th>
+
+                  <th>Alias</th>
+                  <th>Job Title</th>
+                  <th>Job Type</th>
+                  <th>Created by</th>
                   <th>Status</th>
-                  <th>Price</th>
+                  <th>City</th>
+                  <th></th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                  @foreach ($response as $item)
+                  @foreach ($publishedRecruitment as $item)
                 <tr>
-                  <td><span class="text-muted">{{$item->id ?? ''}}</span></td>
-                <td><a href="invoice.html" class="text-inherit">{{$item->title ?? ''}}</a></td>
+                  <td><span class="text-muted"></span>
+                    <label class="form-check">
+                        <input type="checkbox" class="form-check-input" value="{{$item->id ?? ''}}">
+                    </label>
+                </td>  {{-- {{$item->id ?? ''}} --}}
+                <td><a href="#" class="text-inherit">{{$item->alias ?? ''}}</a></td>
                   <td>
-                    {{$item->duration ?? ''}}
+                    {{$item->job_title ?? ''}}
                   </td>
                   <td>
-                    87956621
+                    {{$item->job_type ?? ''}}
                   </td>
                   <td>
-                    15 Dec 2017
+                    {{$item->user->first_name ?? ''}} {{$item->user->last_name ?? ''}}
                   </td>
                   <td>
+                      {{-- @if ({{$item->status}} == "ongoing")
+                        <span class="status-icon bg-success"></span> Ongoing
+                      @else
+                        <span class="status-icon bg-danger"></span> Concluded
+                      @endif --}}
                     <span class="status-icon bg-success"></span> Paid
                   </td>
-                  <td>$887</td>
+                  <td>{{$item->city ?? ''}}</td>
                   <td>
                     <a href="#">
                         <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
@@ -57,7 +72,7 @@
                         {{-- {{ method_field('DELETE') }} --}}
                         @method('DELETE')
                         <input type="hidden" name="item_id" name = "item_id" value="">
-                        <button type="submit" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this Recruitment?')" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
                             <i class="fe fe-trash-2"></i>
                          </button>
                     </form>

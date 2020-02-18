@@ -61,7 +61,7 @@ class LoginController extends Controller
     {
         // $user = Auth::user();
         // $accessToken['accessToken'] = $user->createToken('authToken')->accessToken;
-        // $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout');
     }
 
     // protected function authenticated(Request $request, $user)

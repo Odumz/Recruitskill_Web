@@ -12,6 +12,11 @@ class CandidateController extends Controller
     //     return view('candidatelanding');
     // }
 
+    public function __construct()
+    {
+        $this->middleware('candidate');
+    }
+
     public function home(Request $request)
     {
         return view('candidateindex');

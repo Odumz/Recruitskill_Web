@@ -150,16 +150,16 @@
                     <div class="col-lg order-lg-first">
                     <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                         <li class="nav-item">
-                            <a href="/candidate-dashboard" class="nav-link active"><i class="fa fa-dashboard"></i> Dashboard</a>
+                            <a href="{{ route('candidate')}}" class="nav-link  {{ (request()->is('candidate-dashboard')) ? 'active' : '' }}" ><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/career" class="nav-link"><i class="fa fa-dashboard"></i> Career</a>
+                            <a href="{{ route('career')}}" class="nav-link  {{ (request()->is('career')) ? 'active' : '' }}"><i class="fa fa-dashboard"></i> Career</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/academy" class="nav-link"><i class="fa fa-dashboard"></i> Academy</a>
+                            <a href="{{ route('academy')}}" class="nav-link  {{ (request()->is('academy')) ? 'active' : '' }}"><i class="fa fa-dashboard"></i> Academy</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/verifications" class="nav-link"><i class="fa fa-dashboard"></i> Verifications</a>
+                            <a href="{{ route('verifications')}}" class="nav-link  {{ (request()->is('verifications')) ? 'active' : '' }}"><i class="fa fa-dashboard"></i> Verifications</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a href="/start-recruitment" class="nav-link" data-toggle="dropdown"><i class="fa fa-caret-square-o-right"></i> Career</a>

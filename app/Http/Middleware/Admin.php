@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 
 class Admin
@@ -14,6 +15,14 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
+
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+    }
+
     public function handle($request, Closure $next)
     {
         // return $next($request);
@@ -21,17 +30,22 @@ class Admin
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role !== 1) {
+            // superadmin
             return $next($request);
         }
+        abort(403, 'Unathourized action.');
 
-        if (Auth::user()->role == 2) {
-            return $next($request);
-        }
 
-        if (Auth::user()->role == 3) {
-            return $next($request);
-        }
+        // if (!Auth::user()->role == 2) {
+        //     //recruiter
+        //     return $next($request);
+        // }
+
+        // if (Auth::user()->role == 3) {
+        //     //candidate
+        //     return $next($request);
+        // }
     }
 
 }

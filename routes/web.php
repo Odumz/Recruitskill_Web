@@ -41,322 +41,113 @@ Auth::routes();
 
 // Route::get('user', 'UserController');
 
+Route::group(['middleware' => ['admin']], function () {
 
-Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@index');
 
-Route::get('/dashboard', ['uses' => 'HomeController@everything'])->name('recruiter')->middleware('recruiter', 'admin');
+    Route::group(['middleware' => ['recruiter']], function () {
+        Route::get('/dashboard', ['uses' => 'HomeController@everything'])->name('recruiter')->middleware('recruiter', 'auth', 'admin');
 
-// Route::get('/dashboard', ['uses' => 'HomeController@home']);
+        // Route::get('/dashboard', ['uses' => 'HomeController@home']);
 
-// Route::get('/dashboard', ['uses' => 'HomeController@home', 'HomeController@indexPublishedRecruitment', 'HomeController@indexConcludedRecruitment', 'HomeController@indexOngoingRecruitment', 'HomeController@indexApplication']);
+        // Route::get('/dashboard', ['uses' => 'HomeController@home', 'HomeController@indexPublishedRecruitment', 'HomeController@indexConcludedRecruitment', 'HomeController@indexOngoingRecruitment', 'HomeController@indexApplication']);
 
-Route::get('/published-recruitment', ['uses' => 'RecruitmentController@publishedRecruitment'])->name('publishedrecruitment')->middleware('recruiter', 'admin');
 
-Route::get('/ongoing-recruitment', ['uses' => 'RecruitmentController@ongoingRecruitment'])->name('ongoingrecruitment')->middleware('recruiter', 'admin');
+        //Recruitments
+        Route::post('/add-recruitment', ['uses' => 'RecruitmentController@postRecruitment'])->name('addrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/concluded-recruitment', ['uses' => 'RecruitmentController@concludedRecruitment'])->name('concludedrecruitment')->middleware('recruiter', 'admin');
+        Route::get('/published-recruitment', ['uses' => 'RecruitmentController@getPublishedRecruitment'])->name('publishedrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/applications', 'HomeController@applications')->name('applications')->middleware('recruiter', 'admin');
+        Route::get('/edit-published-recruitment', ['uses' => 'RecruitmentController@putPublishedRecruitment'])->name('editpublishedrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/shortlisted-candidate', 'HomeController@shortlistedCandidate')->name('shortlistedcandidate')->middleware('recruiter', 'admin');
+        Route::delete('/delete-published-recruitment/{id}', 'RecruitmentController@deletePublishedRecruitment')->name('deletepublishedrecruitment')->middleware('auth', 'admin');
 
-Route::get('/onboarded-candidate', 'HomeController@onboardedCandidate')->name('onboardedcandidate')->middleware('recruiter', 'admin');
+        Route::get('/ongoing-recruitment', ['uses' => 'RecruitmentController@getOngoingRecruitment'])->name('ongoingrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/profile', 'HomeController@profile')->name('profile')->middleware('recruiter', 'admin');
+        Route::put('/edit-ongoing-recruitment', ['uses' => 'RecruitmentController@putOngoingRecruitment'])->name('editongoingrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/account-settings', 'HomeController@accountSettings')->name('accountsettings')->middleware('recruiter', 'admin');
+        Route::delete('/delete-ongoing-recruitment/{id}', 'RecruitmentController@deleteOngoingRecruitment')->name('deleteongoingrecruitment')->middleware('auth', 'admin');
 
-Route::get('/notifications', 'HomeController@notification')->name('notifications')->middleware('recruiter', 'admin');
+        Route::get('/concluded-recruitment', ['uses' => 'RecruitmentController@getConcludedRecruitment'])->name('concludedrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/start-recruitment', 'HomeController@startRecruitment')->name('start-recruitment')->middleware('recruiter', 'admin');
+        Route::put('/edit-concluded-recruitment', ['uses' => 'RecruitmentController@putConcludedRecruitment'])->name('editconcludedrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-// Route::get('/start-recruitment', 'HomeController@store');
+        Route::delete('/delete-concluded-recruitment/{id}', 'RecruitmentController@deleteConcludedRecruitment')->name('deleteconcludedrecruitment')->middleware('auth', 'admin');
 
-Route::get('/upcoming-interview', 'HomeController@upcomingInterview')->name('upcominginterview')->middleware('recruiter', 'admin');
 
-Route::get('/candidate-dashboard', 'CandidateController@home')->name('candidate')->middleware('candidate', 'admin');
+        //Applications
+        Route::get('/applications', 'RecruitmentController@getApplications')->name('applications')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/course', 'CandidateController@course')->name('course')->middleware('candidate', 'admin');
+        Route::delete('/delete-applications/{id}', 'RecruitmentController@deleteApplications')->name('deleteapplications')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/courses', 'CoursesController@courses')->name('courses')->middleware('candidate', 'admin');
 
-Route::get('/course-details', 'CoursesController@courseDetails')->name('course-details')->middleware('candidate', 'admin');
+        //Candidates
+        Route::get('/shortlisted-candidate', 'RecruitmentController@shortlistedCandidate')->name('shortlistedcandidate')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/job-post-detail', 'CandidateController@jobPostDetail')->name('job-post')->middleware('candidate', 'admin');
+        Route::get('/onboarded-candidate', 'RecruitmentController@onboardedCandidate')->name('onboardedcandidate')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/career', 'CandidateController@career')->name('career')->middleware('candidate', 'admin');
+        Route::get('/profile', 'RecruitmentController@profile')->name('profile')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/academy', 'CandidateController@academy')->name('academy')->middleware('candidate', 'admin');
+        Route::get('/account-settings', 'RecruitmentController@accountSettings')->name('accountsettings')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/verifications', 'CandidateController@verification')->name('verifications')->middleware('candidate', 'admin');
+        Route::get('/notifications', 'RecruitmentController@notification')->name('notifications')->middleware('recruiter', 'auth', 'admin');
 
-// Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
+        Route::get('/start-recruitment', 'RecruitmentController@postRecruitment')->name('startrecruitment')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('candidate-profile', 'CandidateController@profile')->name('candidate-profile')->middleware('candidate', 'admin');
+        // Route::get('/start-recruitment', 'RecruitmentController@store');
 
-Route::get('candidate-account-settings', 'CandidateController@accountSettings')->name('candidate-account-settings')->middleware('candidate', 'admin');
+        Route::get('/upcoming-interview', 'RecruitmentController@upcomingInterview')->name('upcominginterview')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('candidate-notifications', 'CandidateController@notification')->name('candidate-notifications')->middleware('candidate', 'admin');
+        Route::get('/start-recruitment-form', 'RecruitmentController@startRecruitmentForm')->name('startrecruitmentform')->middleware('recruiter', 'auth', 'admin');
 
-Route::get('/candidate-upcoming-interviews', 'CandidateController@upcomingInterview')->name('candidate-upcoming-interview')->middleware('candidate', 'admin');
+        Route::post('/ongoing-recruitment/edit/{id}', 'RecruitmentController@updateOngoing')->name('doscountry')->middleware('admin', 'auth', 'recruiter');
 
-Route::get('doscountry', ['uses' => 'CountryController@getAllCountries'])->name('doscountry')->middleware('admin');
+        Route::get('/edit', ['uses' => 'RecruitmentController@edit'])->name('edit')->middleware('admin', 'auth', 'recruiter');
 
-Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry'])->name('doscountries')->middleware('admin');
+        Route::get('/edit-shortlisted-candidate', ['uses' => 'RecruitmentController@editCandidate'])->name('edit-candidate')->middleware('admin', 'auth', 'recruiter');
 
-Route::post('/jobtitle', 'RecruitmentController@postJobTitle')->name('job-title')->middleware('admin');
+        Route::delete('/delete/candidate/{id}', 'RecruitmentController@deleteCandidate')->name('doscountry')->middleware('admin', 'auth', 'recruiter');
 
-Route::delete('/delete/{id}', 'RecruitmentController@deleteJobTitle')->name('job-title')->middleware('admin');
-
-Route::post('/ongoing-recruitment/edit/{id}', 'RecruitmentController@updateOngoing')->name('doscountry')->middleware('admin', 'recruiter');
-
-Route::get('/edit', ['uses' => 'RecruitmentController@edit'])->name('edit')->middleware('admin', 'recruiter');
-
-Route::get('/edit-shortlisted-candidate', ['uses' => 'RecruitmentController@editCandidate'])->name('edit-candidate')->middleware('admin', 'recruiter');
-
-Route::delete('/delete/candidate/{id}', 'RecruitmentController@deleteCandidate')->name('doscountry')->middleware('admin', 'recruiter');
-
-Route::put('/edit-shortlisted/{id}', 'RecruitmentController@updateShortlistedCandidate')->name('update-shortlisted-candidate')->middleware('admin', 'recruiter');
-
-
-
-
-// Routers
-
-$router->group(['prefix' => 'api/v1'], function($router)
-{
-	//posts
-	// $router->group(['prefix' => 'posts', 'middleware'=>'auth'], function($router)
-    //     {
-    //         $router->post('add','PostsController@createPost');
-    //         $router->get('view/{id}','PostsController@viewPost');
-    //         $router->put('edit/{id}','PostsController@updatePost');
-
-    //         $router->delete('delete/{id}','PostsController@deletePost');
-    //         $router->get('index','PostsController@index');
-
-    //     });
-    //users
-
-    $router->group(['prefix' => 'users'], function($router)
-        {
-            $router->post('add','UsersController@add');
-            $router->get('view/{id}','UsersController@view');
-            $router->put('edit/{id}','UsersController@edit');
-
-            $router->delete('delete/{id}','UsersController@delete');
-            $router->get('index','UsersController@index');
-        });
-
-    $router->group(['prefix' => 'recruit'], function($router)
-    {
-        // User Profile
-        $router->get('user_profile',  ['uses' => 'UsersProfileController@showAllUsersProfiles']);
-
-        $router->get('user_profile/{id}', ['uses' => 'UsersProfileController@showOneUsersProfile']);
-
-        $router->post('user_profile', ['uses' => 'UsersProfileController@create']);
-
-        $router->delete('user_profile/{id}', ['uses' => 'UsersProfileController@delete']);
-
-        $router->put('user_profile/{id}', ['uses' => 'UsersProfileController@update']);
-
-        // Skill Test Score
-        $router->get('skill_test_score',  ['uses' => 'SkillTestScoreController@showAllSkillTestScores']);
-
-        $router->get('skill_test_score/{id}', ['uses' => 'SkillTestScoreController@showOneSkillTestScore']);
-
-        $router->post('skill_test_score', ['uses' => 'SkillTestScoreController@create']);
-
-        $router->delete('skill_test_score/{id}', ['uses' => 'SkillTestScoreController@delete']);
-
-        $router->put('skill_test_score/{id}', ['uses' => 'SkillTestScoreController@update']);
-
-        // Skills
-        $router->get('skill',  ['uses' => 'SkillsController@showAllSkills']);
-
-        $router->get('skill/{id}', ['uses' => 'SkillsController@showOneSkill']);
-
-        $router->post('skill', ['uses' => 'SkillsController@create']);
-
-        $router->delete('skill/{id}', ['uses' => 'SkillsController@delete']);
-
-        $router->put('skill/{id}', ['uses' => 'SkillsController@update']);
-
-        // Skills Test
-        $router->get('skills_test',  ['uses' => 'SkillsTestController@showAllSkillsTests']);
-
-        $router->get('skills_test/{id}', ['uses' => 'SkillsTestController@showOneSkillsTest']);
-
-        $router->post('skills_test', ['uses' => 'SkillsTestController@create']);
-
-        $router->delete('skills_test/{id}', ['uses' => 'SkillsTestController@delete']);
-
-        $router->put('skills_test/{id}', ['uses' => 'SkillsTestController@update']);
-
-        // Skills Test Type
-        $router->get('skills_test_type',  ['uses' => 'SkillsTestTypeController@showAllSkillsTestTypes']);
-
-        $router->get('skills_test_type/{id}', ['uses' => 'SkillsTestTypeController@showOneSkillsTestType']);
-
-        $router->post('skills_test_type', ['uses' => 'SkillsTestTypeController@create']);
-
-        $router->delete('skills_test_type/{id}', ['uses' => 'SkillsTestTypeController@delete']);
-
-        $router->put('skills_test_type/{id}', ['uses' => 'SkillsTestTypeController@update']);
-
-        // Recruitments
-        $router->get('recruitment',  ['uses' => 'RecruitmentsController@showAllRecruitments']);
-
-        $router->get('recruitment/{id}', ['uses' => 'RecruitmentsController@showOneRecruitment']);
-
-        $router->post('recruitment', ['uses' => 'RecruitmentsController@create']);
-
-        $router->delete('recruitment/{id}', ['uses' => 'RecruitmentsController@delete']);
-
-        $router->put('recruitment/{id}', ['uses' => 'RecruitmentsController@update']);
-
-        // Applications
-        $router->get('application',  ['uses' => 'ApplicationsController@showAllApplications']);
-
-        $router->get('application/{id}', ['uses' => 'ApplicationsController@showOneApplication']);
-
-        $router->post('application', ['uses' => 'ApplicationsController@create']);
-
-        $router->delete('application/{id}', ['uses' => 'ApplicationsController@delete']);
-
-        $router->put('application/{id}', ['uses' => 'ApplicationsController@update']);
-
-        // Invites
-        $router->get('invites',  ['uses' => 'InvitesController@showAllInvites']);
-
-        $router->get('invites/{id}', ['uses' => 'InvitesController@showOneInvite']);
-
-        $router->post('invites', ['uses' => 'InvitesController@create']);
-
-        $router->delete('invites/{id}', ['uses' => 'InvitesController@delete']);
-
-        $router->put('invites/{id}', ['uses' => 'InvitesController@update']);
-
-        // Job Title
-        $router->get('job_title',  ['uses' => 'JobTitleController@showAllJobTitles']);
-
-        $router->get('job_title/{id}', ['uses' => 'JobTitleController@showOneJobTitle']);
-
-        $router->post('job_title', ['uses' => 'JobTitleController@create']);
-
-        $router->delete('job_title/{id}', ['uses' => 'JobTitleController@delete']);
-
-        $router->put('job_title/{id}', ['uses' => 'JobTitleController@update']);
-
-        // Job Description
-        $router->get('job_description',  ['uses' => 'JobDescriptionController@showAllJobDescriptions']);
-
-        $router->get('job_description/{id}', ['uses' => 'JobDescriptionController@showOneJobDescription']);
-
-        $router->post('job_description', ['uses' => 'JobDescriptionController@create']);
-
-        $router->delete('job_description/{id}', ['uses' => 'JobDescriptionController@delete']);
-
-        $router->put('job_description/{id}', ['uses' => 'JobDescriptionController@update']);
-
-        // Courses
-        $router->get('courses',  ['uses' => 'CoursesController@showAllCourses']);
-
-        $router->get('courses/{id}', ['uses' => 'CoursesController@showOneCourse']);
-
-        $router->post('courses', ['uses' => 'CoursesController@create']);
-
-        $router->delete('courses/{id}', ['uses' => 'CoursesController@delete']);
-
-        $router->put('courses/{id}', ['uses' => 'CoursesController@update']);
-
-        // Certificates
-        $router->get('certificates',  ['uses' => 'CertificatesController@showAllCertificates']);
-
-        $router->get('certificates/{id}', ['uses' => 'CertificatesController@showOneCertificate']);
-
-        $router->post('certificates', ['uses' => 'CertificatesController@create']);
-
-        $router->delete('certificates/{id}', ['uses' => 'CertificatesController@delete']);
-
-        $router->put('certificates/{id}', ['uses' => 'CertificatesController@update']);
-
-        // State
-        $router->get('state',  ['uses' => 'StateController@showAllStates']);
-
-        $router->get('state/{id}', ['uses' => 'StateController@showOneState']);
-
-        $router->post('state', ['uses' => 'StateController@create']);
-
-        $router->delete('state/{id}', ['uses' => 'StateController@delete']);
-
-        $router->put('state/{id}', ['uses' => 'StateController@update']);
-
-        // Country
-        $router->get('country',  ['uses' => 'CountryController@showAllCountries']);
-
-        $router->get('country/{id}', ['uses' => 'CountryController@showOneCountry']);
-
-        $router->post('country', ['uses' => 'CountryController@create']);
-
-        $router->delete('country/{id}', ['uses' => 'CountryController@delete']);
-
-        $router->put('country/{id}', ['uses' => 'CountryController@update']);
-
-        // City
-        $router->get('city',  ['uses' => 'CityController@showAllCities']);
-
-        $router->get('city/{id}', ['uses' => 'CityController@showOneCity']);
-
-        $router->post('city', ['uses' => 'CityController@create']);
-
-        $router->delete('city/{id}', ['uses' => 'CityController@delete']);
-
-        $router->put('city/{id}', ['uses' => 'CityController@update']);
-
-        // Notifications
-        $router->get('notifications',  ['uses' => 'NotificationsController@showAllNotifications']);
-
-        $router->get('notifications/{id}', ['uses' => 'NotificationsController@showOneNotification']);
-
-        $router->post('notifications', ['uses' => 'NotificationsController@create']);
-
-        $router->delete('notifications/{id}', ['uses' => 'NotificationsController@delete']);
-
-        $router->put('notifications/{id}', ['uses' => 'NotificationsController@update']);
-
-        // Positions
-        $router->get('positions',  ['uses' => 'PositionsController@showAllPositions']);
-
-        $router->get('positions/{id}', ['uses' => 'PositionsController@showOnePosition']);
-
-        $router->post('positions', ['uses' => 'PositionsController@create']);
-
-        $router->delete('positions/{id}', ['uses' => 'PositionsController@delete']);
-
-        $router->put('positions/{id}', ['uses' => 'PositionsController@update']);
-
-        // Notifications Recipient
-        $router->get('notifications_recipient',  ['uses' => 'NotificationsRecipientController@showAllNotificationsRecipients']);
-
-        $router->get('notifications_recipient/{id}', ['uses' => 'NotificationsRecipientController@showOneNotificationsRecipient']);
-
-        $router->post('notifications_recipient', ['uses' => 'NotificationsRecipientController@create']);
-
-        $router->delete('notifications_recipient/{id}', ['uses' => 'NotificationsRecipientController@delete']);
-
-        $router->put('notifications_recipient/{id}', ['uses' => 'NotificationsRecipientController@update']);
-
-        // Industry Recipient
-        $router->get('industry',  ['uses' => 'IndustryController@showAllIndustries']);
-
-        $router->get('industry/{id}', ['uses' => 'IndustryController@showOneIndustry']);
-
-        $router->post('industry', ['uses' => 'IndustryController@create']);
-
-        $router->delete('industry/{id}', ['uses' => 'IndustryController@delete']);
-
-        $router->put('industry/{id}', ['uses' => 'IndustryController@update']);
+        Route::put('/edit-shortlisted/{id}', 'RecruitmentController@updateShortlistedCandidate')->name('update-shortlisted-candidate')->middleware('admin', 'auth', 'recruiter');
     });
+
+    Route::group(['middleware' => ['candidate']], function () {
+        Route::get('/candidate-dashboard', 'CandidateController@home')->name('candidate')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/course', 'CandidateController@course')->name('course')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/courses', 'CoursesController@courses')->name('courses')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/course-details', 'CoursesController@courseDetails')->name('course-details')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/job-post-detail', 'CandidateController@jobPostDetail')->name('job-post')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/career', 'CandidateController@career')->name('career')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/academy', 'CandidateController@academy')->name('academy')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/verifications', 'CandidateController@verification')->name('verifications')->middleware('candidate', 'auth', 'admin');
+
+        // Route::get('candidate/onboarded-candidate', 'CandidateController@onboardedCandidate');
+
+        Route::get('candidate-profile', 'CandidateController@profile')->name('candidate-profile')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('candidate-account-settings', 'CandidateController@accountSettings')->name('candidate-account-settings')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('candidate-notifications', 'CandidateController@notification')->name('candidate-notifications')->middleware('candidate', 'auth', 'admin');
+
+        Route::get('/candidate-upcoming-interviews', 'CandidateController@upcomingInterview')->name('candidate-upcoming-interview')->middleware('candidate', 'auth', 'admin');
     });
+
+    Route::get('doscountry', ['uses' => 'CountryController@getAllCountries'])->name('doscountry')->middleware('auth', 'admin');
+
+    Route::get('doscountry/{id}', ['uses' => 'CountryController@getOneCountry'])->name('doscountries')->middleware('auth', 'admin');
+
+    Route::post('/jobtitle', 'RecruitmentController@postJobTitle')->name('job-title')->middleware('auth', 'admin');
+
+    Route::delete('/delete/{id}', 'RecruitmentController@deleteJobTitle')->name('job-title-delete')->middleware('auth', 'admin');
+
+    Route::delete('/delete-concluded-recruitment/{id}', 'RecruitmentController@deleteConcludedRecruitment')->name('concluded-recruitment-delete')->middleware('auth', 'admin');
+});
+
+

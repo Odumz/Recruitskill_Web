@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -91,26 +92,29 @@ class HomeController extends Controller
 
     public function everything(Request $request)
     {
-        $publishedrecruitment = Helper::getRSRequest('recruit/published-recruitment');
+        $recruiter = Auth::user()->id;
+        // dd($recruiter);
+        $recruitmentHelper = Helper::getRSRequest('recruit/recruitment');
+        $recruitmentCollection = collect($recruitmentHelper);
+        $ongoingrecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('status', 'ongoing');
+        // dd($ongoingrecruitment);
+        $publishedrecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('isPublished', 1);
+        $concludedrecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('status', 'concluded');
+
+        // $publishedrecruitment = Helper::getRSRequest('recruit/published-recruitment');
         $upcominginterview = Helper::getRSRequest('recruit/upcoming-interview');
         $onboardedcandidate = Helper::getRSRequest('recruit/onboarded-candidate');
         $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
         $applications = Helper::getRSRequest('recruit/application');
-        $ongoingrecruitment = Helper::getRSRequest('recruit/ongoing-recruitment');
-        $concludedrecruitment = Helper::getRSRequest('recruit/concluded-recruitment');
-        // dd($shortlistedcandidate);
+        // $ongoingrecruitment = Helper::getRSRequest('recruit/ongoing-recruitment');
+        // $concludedrecruitment = Helper::getRSRequest('recruit/concluded-recruitment');
+        // dd($applications);
         return view('index', compact('publishedrecruitment','upcominginterview','onboardedcandidate','shortlistedcandidate','applications','ongoingrecruitment','concludedrecruitment'));
     }
 
     public function startRecruitment(Request $request)
     {
         return view('startrecruitment');
-    }
-
-    public function applications(Request $request)
-    {
-        $response = Helper::getRSRequest('recruit/applications');
-        return view('applications', compact('response'));
     }
 
     public function shortlistedCandidate(Request $request)

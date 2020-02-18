@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Recruitment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecruitmentController extends Controller
 {
@@ -23,36 +24,14 @@ class RecruitmentController extends Controller
 
     // }
 
-    // public function showAllRecruitments()
-    // {
-    //     return response()->json(Recruitment::all());
-    // }
-
-    public function publishedRecruitment()
+    public function __construct()
     {
-        // return Helper::getRSRequest('api/courses');
-        $response = Helper::getRSRequest('recruit/published-recruitment');
-        // $recruitment = json_decode(json_encode($response));
-        return view('publishedrecruitment', compact('response'));
-        // return view('publishedrecruitment')->with('recruitment', $response);
+        $this->middleware('recruiter');
     }
 
-    public function ongoingRecruitment()
+    public function startRecruitmentForm()
     {
-        // return Helper::getRSRequest('api/courses');
-        $response = Helper::getRSRequest('recruit/ongoing-recruitment');
-        // $recruitment = json_decode(json_encode($response));
-        return view('ongoingrecruitment', compact('response'));
-        // return view('publishedrecruitment')->with('recruitment', $response);
-    }
-
-    public function concludedRecruitment()
-    {
-        // return Helper::getRSRequest('api/courses');
-        $response = Helper::getRSRequest('recruit/concluded-recruitment');
-        // $recruitment = json_decode(json_encode($response));
-        return view('concludedrecruitment', compact('response'));
-        // return view('publishedrecruitment')->with('recruitment', $response);
+        return view('startrecruitmentform');
     }
 
     public function postRecruitment(Request $request)
@@ -95,6 +74,85 @@ class RecruitmentController extends Controller
         return view('startrecruitment');
     }
 
+    public function getPublishedRecruitment()
+    {
+        $recruiter = Auth::user()->id;
+        $recruitmentHelper = Helper::getRSRequest('recruit/recruitment');
+        $recruitmentCollection = collect($recruitmentHelper);
+        $publishedRecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('isPublished', 1);
+        // dd($publishedRecruitment);
+        return view('publishedrecruitment', compact('publishedRecruitment'));
+    }
+
+    public function putPublishedRecruitment(Request $request, string $id)
+    {
+
+        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        return redirect()->back();
+    }
+
+    public function deletePublishedRecruitment(Request $request, string $id)
+    {
+
+        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        return redirect()->back();
+    }
+
+    public function getOngoingRecruitment()
+    {
+        $recruiter = Auth::user()->id;
+        $recruitmentHelper = Helper::getRSRequest('recruit/recruitment');
+        $recruitmentCollection = collect($recruitmentHelper);
+        $ongoingRecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('status', 'ongoing');
+        return view('ongoingrecruitment', compact('ongoingRecruitment'));
+    }
+
+    public function putOngoingRecruitment(Request $request, string $id)
+    {
+
+        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        return redirect()->back();
+    }
+
+    public function deleteOngoingRecruitment(Request $request, string $id)
+    {
+
+        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        return redirect()->back();
+    }
+
+    public function getConcludedRecruitment()
+    {
+        $recruiter = Auth::user()->id;
+        $recruitmentHelper = Helper::getRSRequest('recruit/recruitment');
+        $recruitmentCollection = collect($recruitmentHelper);
+        $concludedRecruitment = $recruitmentCollection->where('users_id', $recruiter)->where('status', 'concluded');
+        return view('concludedrecruitment', compact('concludedRecruitment'));
+    }
+
+    public function putConcludedRecruitment(Request $request, string $id)
+    {
+        $id = $request->item_id;
+        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        return back()->with('success','Recruitment updated successfully!')->autoclose(4000);
+    }
+
+    public function deleteConcludedRecruitment(Request $request, string $id)
+    {
+        $id = $request->item_id;
+        $recruitment = Helper::deleteRSRequest('recruit/recruitment', $id);
+        return back()->with('success','Recruitment deleted successfully!')->autoclose(4000);
+    }
+
+
+    //Applications
+    public function getApplications(Request $request)
+    {
+        $response = Helper::getRSRequest('recruit/application');
+        // dd($response);
+        return view('applications', compact('response'));
+    }
+
     public function postJobTitle(Request $request)
     {
         // $users_id = $request->users_id;
@@ -113,7 +171,7 @@ class RecruitmentController extends Controller
 
         //dd($response);
         // return view('index');
-        return back()->with('success','Item created successfully!');
+        return back()->with('success','Item created successfully!')->autoclose(4000);
     }
 
     public function deleteJobTitle(Request $request, string $id)
