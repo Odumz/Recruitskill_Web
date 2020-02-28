@@ -169,3 +169,5 @@ $user = User::create([
 Authentication request
 
 
+
+            'job_category' => $job_category,

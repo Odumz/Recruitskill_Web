@@ -10,7 +10,7 @@
         </div>
 
         <div class="col-md-6 col-xl-8">
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="{{ route('addrecruitment') }}" enctype="application/json">
                 {{ csrf_field() }}
             <div class="card">
                 <div class="card-status bg-teal"></div>
@@ -35,9 +35,6 @@
                                     </div>
                                 </div>
                                 </div> --}}
-                                <div class="form-group">
-                                    <input type="hidden" name="users_id" name="users_id" value="{{ Auth::user()->id }}">
-                                </div>
                                 <div class="form-group">
                                     <label class="form-label">Job Title</label>
                                     <input class="form-control" name="job_title" id="job_title" placeholder="Enter a job title"/>
@@ -104,6 +101,15 @@
                                     <label class="form-label">Experience</label>
                                     <input class="form-control" name="required_experience" id="required_experience" placeholder="Enter required experience"/>
                                 </div>
+                                <div class="form-group">
+                                  <div class="form-label">Type <span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Select job category"></i></span></div>
+                                  <select class="form-control form-select" name="job_type">
+                                    <option value="">-- Select --</option>
+                                    <option value="full time">Full time</option>
+                                    <option value="part time">Part time</option>
+                                    <option value="internship">Internship</option>
+                                  </select>
+                                </div>
                                 {{-- <div class="form-group">
                                     <label class="form-label">Job Description</label>
                                     <textarea class="form-control" rows="7" placeholder="Enter the necessary description"></textarea>
@@ -148,34 +154,42 @@
                                 <div class="form-group">
                                     <label class="form-label">Gender</label>
                                     <div class="selectgroup w-25">
-                                      <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="Male" class="selectgroup-input">
-                                        <span class="selectgroup-button">M</span>
-                                      </label>
-                                      <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="Female" class="selectgroup-input">
-                                        <span class="selectgroup-button">F</span>
-                                      </label>
+                                        <label class="selectgroup-item">
+                                            <input type="radio" name="gender" value="Any" class="selectgroup-input">
+                                            <span class="selectgroup-button">Any</span>
+                                        </label>
+                                        <label class="selectgroup-item">
+                                            <input type="radio" name="gender" value="Male" class="selectgroup-input">
+                                            <span class="selectgroup-button">Male</span>
+                                        </label>
+                                        <label class="selectgroup-item">
+                                            <input type="radio" name="gender" value="Female" class="selectgroup-input">
+                                            <span class="selectgroup-button">Female</span>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Country</label>
-                                    <input class="form-control" placeholder="eg. Nigeria"/>
+                                    <input class="form-control" name="country" id="country" placeholder="eg. Nigeria"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">State</label>
-                                    <input class="form-control" placeholder="eg. Lagos"/>
+                                    <input class="form-control" name="state" id="state" placeholder="eg. Lagos"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">City</label>
                                     <input class="form-control" name="city" id="city" placeholder="eg. Somolu"/>
+                                </div>
+                                <div>
+                                    <input hidden class="form-control" name="status" id="status" value="ongoing"/>
+                                    <input hidden class="form-control" name="isPublished" id="isPublished" value="1"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Expiry Date</label>
                                     <input type="date" name="duration" id="duration" class="form-control"/>
                                 </div>
                                 <div class="form-group">
-                                    <input hidden type="text" name="data_type" id="data_type" value="userdefined" class="form-control"/>
+                                    <input hidden type="text" name="data_type" id="data_type" value="user" class="form-control"/>
                                 </div>
                                 {{-- <div class="form-group">
                                     <label class="form-label">Job Description</label>

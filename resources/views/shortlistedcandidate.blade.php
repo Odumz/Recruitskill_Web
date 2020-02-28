@@ -38,7 +38,7 @@
                 </div>
               </td>
               <td>
-                <div>{{ $item->user_id }}</div>
+                <div>{{ $item->user_id ?? '' }}</div>
                 <div class="small text-muted">
                   Registered: Mar 19, 2018
                 </div>

@@ -33,7 +33,7 @@ class Helper {
                 'form_params' => $fields
             ]);
 
-            $final_response = ['status'=>'success', 'Message'=> $post_details["title"]. ' successfully created'];
+            $final_response = ['status'=>'success', 'Message'=> $post_details["title"]. ' created successfully'];
 
             return $final_response;
 

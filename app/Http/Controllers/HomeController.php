@@ -117,14 +117,6 @@ class HomeController extends Controller
         return view('startrecruitment');
     }
 
-    public function shortlistedCandidate(Request $request)
-    {
-        $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
-        // dd($candidate);
-        return view('shortlistedcandidate', compact('shortlistedcandidate'));
-        // return view('shortlistedcandidate');
-    }
-
     public function onboardedCandidate(Request $request)
     {
         return view('onboardedcandidate');

@@ -67,7 +67,7 @@
                           </a>
                         </td>
                         <td>
-                          <form action="/delete/candidate" method="POST">
+                          <form action="{{route('deleterecruitment', $item->id)}}" method="POST">
                               {{ csrf_field() }}
                               {{-- {{ method_field('DELETE') }} --}}
                               @method('DELETE')

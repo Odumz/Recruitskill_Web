@@ -66,7 +66,7 @@
                     <div class="card-body">
                         {{-- @foreach ($pr as $item) --}}
                         <div class="card-value float-right text-blue"><i class="fa fa-user"></i></div>
-                            <h3 class="mb-1">{{count($publishedrecruitment) ?? '0'}}</h3>
+                            <h3 class="mb-1">{{count($publishedrecruitment ?? '') ?? '0'}}</h3>
                         <div class="text-muted">Published Recruitments</div>
                         {{-- @endforeach --}}
                     </div>

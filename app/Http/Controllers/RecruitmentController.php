@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
-use App\Recruitment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +28,11 @@ class RecruitmentController extends Controller
         $this->middleware('recruiter');
     }
 
+    public function startRecruitment()
+    {
+        return view('startrecruitment');
+    }
+
     public function startRecruitmentForm()
     {
         return view('startrecruitmentform');
@@ -36,7 +40,6 @@ class RecruitmentController extends Controller
 
     public function postRecruitment(Request $request)
     {
-        $user_id = $request->user_id;
         $job_title = $request->job_title;
         $job_description = $request->job_description;
         $duration = $request->duration;
@@ -51,27 +54,69 @@ class RecruitmentController extends Controller
         $position = $request->position;
         $renumeration = $request->renumeration;
         $data_type = $request->data_type;
+        $alias = $request->alias;
+        $status = $request->status;
+        $isPublished = $request->isPublished;
+        $job_type = $request->job_type;
 
-        $fields = array(
-            'user_id' => $user_id,
+
+        $fields = [
+            'users_id' => Auth::user()->id,
+            // dd(Auth::user()->id),
             'job_title' => $job_title,
             'job_description' => $job_description,
             'duration' => $duration,
-            'country' => $country,
+            'position' => $position,
             'required_skills' => $required_skills,
-            'required_experience' => $required_experience,
-            'job_category' => $job_category,
-            'city' => $city,
+            'country' => $country,
             'state' => $state,
+            'city' => $city,
             'gender' => $gender,
             'responsibilities' => $responsibilities,
-            'position' => $position,
+            'required_experience' => $required_experience,
             'renumeration' => $renumeration,
-            'data_type' => $data_type
-        );
+            'alias' => $alias,
+            'data_type' => $data_type,
+            'status' => $status,
+            'isPublished' => $isPublished,
+            'job_type' => $job_type,
+        ];
 
-        $response = Helper::postRSRequest('recruit/recruitment', $fields);
-        return view('startrecruitment');
+        // dd($fields);
+
+        $post_details = [
+            'title' => "Recruitment"
+        ];
+
+        $response = Helper::postRSRequest('recruit/recruitment', $fields, $post_details);
+
+        // dd($response);
+        // return view('index');
+        // return back()->with('success', $response['Message']);
+
+        // $response = Helper::postRSRequest('recruit/recruitment', $fields);
+
+        // dd($response);
+
+        // return view('index')->with('success','Item created successfully!');
+
+        $getRecruitment = Helper::getRSRequest('recruit/recruitment');
+        $recruitmentCollection = collect($getRecruitment)->last();
+        $recruitment_id = $recruitmentCollection->id;
+        $recruitment_alias = $recruitmentCollection->alias;
+
+        $fields = [
+            'recruitment_id' => $recruitment_id,
+            'alias' => $recruitment_alias
+        ];
+
+        // $otherresponse = Helper::postRSRequest('recruit/ongoing-recruitment', $fields);
+        $otherresponse = Helper::postRSRequest('recruit/published-recruitment', $fields);
+        // $otherresponse = Helper::postRSRequest('recruit/ongoing-recruitment', $fields);
+        // dd($otherresponse);
+
+        // return view('index');
+        return back()->with('success', $response['Message']);
     }
 
     public function getPublishedRecruitment()
@@ -86,15 +131,14 @@ class RecruitmentController extends Controller
 
     public function putPublishedRecruitment(Request $request, string $id)
     {
-
-        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        $id = $request->item_id;
+        $prog = Helper::deleteRSRequest('recruit/recruitment/',$id);
         return redirect()->back();
     }
 
-    public function deletePublishedRecruitment(Request $request, string $id)
+    public function deleteRecruitment(Request $request, string $id)
     {
-
-        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
+        $prog = Helper::deleteRSRequest('recruit/recruitment/',$id);
         return redirect()->back();
     }
 
@@ -107,19 +151,19 @@ class RecruitmentController extends Controller
         return view('ongoingrecruitment', compact('ongoingRecruitment'));
     }
 
-    public function putOngoingRecruitment(Request $request, string $id)
-    {
+    // public function putOngoingRecruitment(Request $request, string $id)
+    // {
+    //     $id = $request->item_id;
+    //     $prog = Helper::deleteRSRequest('recruit/recruitment/',$id);
+    //     return redirect()->back();
+    // }
 
-        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
-        return redirect()->back();
-    }
-
-    public function deleteOngoingRecruitment(Request $request, string $id)
-    {
-
-        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
-        return redirect()->back();
-    }
+    // public function deleteOngoingRecruitment(Request $request, string $id)
+    // {
+    //     $id = $request->item_id;
+    //     $prog = Helper::deleteRSRequest('recruit/recruitment/',$id);
+    //     return redirect()->back();
+    // }
 
     public function getConcludedRecruitment()
     {
@@ -130,19 +174,20 @@ class RecruitmentController extends Controller
         return view('concludedrecruitment', compact('concludedRecruitment'));
     }
 
-    public function putConcludedRecruitment(Request $request, string $id)
-    {
-        $id = $request->item_id;
-        $prog = Helper::deleteRSRequest('recruit/recruitment',$id);
-        return back()->with('success','Recruitment updated successfully!')->autoclose(4000);
-    }
+    // public function putConcludedRecruitment(Request $request, string $id)
+    // {
+    //     $id = $request->item_id;
+    //     $prog = Helper::deleteRSRequest('recruit/recruitment/',$id);
+    //     return back()->with('success','Recruitment updated successfully!')->autoclose(4000);
+    // }
 
-    public function deleteConcludedRecruitment(Request $request, string $id)
-    {
-        $id = $request->item_id;
-        $recruitment = Helper::deleteRSRequest('recruit/recruitment', $id);
-        return back()->with('success','Recruitment deleted successfully!')->autoclose(4000);
-    }
+    // public function deleteConcludedRecruitment(Request $request, string $id)
+    // {
+    //     $id = $request->item_id;
+    //     // dd($id);
+    //     $recruitment = Helper::deleteRSRequest('recruit/recruitment/', $id);
+    //     return back()->with('success','Recruitment deleted successfully!')->autoclose(4000);
+    // }
 
 
     //Applications
@@ -169,9 +214,9 @@ class RecruitmentController extends Controller
 
         $response = Helper::postRSRequest('recruit/job_title', $fields, $post_details);
 
-        //dd($response);
+        // dd($response['Message']);
         // return view('index');
-        return back()->with('success','Item created successfully!')->autoclose(4000);
+        return back()->with('success', $response['Message']);
     }
 
     public function deleteJobTitle(Request $request, string $id)
@@ -248,4 +293,14 @@ class RecruitmentController extends Controller
         $response = Helper::getRSRequest('recruit/shortlisted-candidate');
         return view ('editshortlistedcandidate', compact('response'));
     }
+
+
+    public function shortlistedCandidate(Request $request)
+    {
+        $shortlistedcandidate = Helper::getRSRequest('recruit/shortlisted-candidate');
+        // dd($candidate);
+        return view('shortlistedcandidate', compact('shortlistedcandidate'));
+        // return view('shortlistedcandidate');
+    }
+
 }

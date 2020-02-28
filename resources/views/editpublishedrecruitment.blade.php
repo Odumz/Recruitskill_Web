@@ -67,11 +67,11 @@
                     </a>
                   </td>
                   <td>
-                    <form action={{route('deleterecruitment', $item->id)}} method="POST">
+                    <form action="/delete/candidate" method="POST">
                         {{ csrf_field() }}
                         {{-- {{ method_field('DELETE') }} --}}
                         @method('DELETE')
-                        <input type="hidden" name="item_id" name = "item_id" value="{{$item->id ?? ''}}">
+                        <input type="hidden" name="item_id" name = "item_id" value="">
                         <button type="submit" onclick="return confirm('Are you sure you want to delete this Recruitment?')" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
                             <i class="fe fe-trash-2"></i>
                          </button>

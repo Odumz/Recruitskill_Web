@@ -1,88 +1,88 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="page-header">
-        <h4 class="page-subtitle">
-            <a href="/dashboard">Dashboard</a> > Published Recruitments
-        </h4>
-    </div>
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Published Recruitments</h3>
-            </div>
-            <div class="table-responsive">
+<div class="page-header">
+    <h4 class="page-subtitle">
+        <a href="/dashboard">Dashboard</a> > Concluded Recruitments
+    </h4>
+</div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Concluded Recruitments</h3>
+        </div>
+        <div class="table-responsive">
             <table class="table card-table table-vcenter text-nowrap">
-              <thead>
-                <tr>
-                    <th class="w-1">
-                      <label class="form-check">
-                          <input type="checkbox" class="form-check-input">  {{-- class="custom-control custom-checkbox" class="custom-control-input" --}}
-                      </label>
-                    </th>
+                <thead>
+                    <tr>
+                        <th class="w-1">
+                          <label class="form-check">
+                              <input type="checkbox" class="form-check-input">  {{-- class="custom-control custom-checkbox" class="custom-control-input" --}}
+                          </label>
+                        </th>
 
-                  <th>Alias</th>
-                  <th>Job Title</th>
-                  <th>Job Type</th>
-                  <th>Created by</th>
-                  <th>Status</th>
-                  <th>City</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                  @foreach ($publishedRecruitment as $item)
-                <tr>
-                  <td><span class="text-muted"></span>
-                    <label class="form-check">
-                        <input type="checkbox" class="form-check-input" value="{{$item->id ?? ''}}">
-                    </label>
-                </td>  {{-- {{$item->id ?? ''}} --}}
-                <td><a href="#" class="text-inherit">{{$item->alias ?? ''}}</a></td>
-                  <td>
-                    {{$item->job_title ?? ''}}
-                  </td>
-                  <td>
-                    {{$item->job_type ?? ''}}
-                  </td>
-                  <td>
-                    {{$item->user->first_name ?? ''}} {{$item->user->last_name ?? ''}}
-                  </td>
-                  <td>
-                      {{-- @if ({{$item->status}} == "ongoing")
-                        <span class="status-icon bg-success"></span> Ongoing
-                      @else
-                        <span class="status-icon bg-danger"></span> Concluded
-                      @endif --}}
-                    <span class="status-icon bg-success"></span> Paid
-                  </td>
-                  <td>{{$item->city ?? ''}}</td>
-                  <td>
-                    <a href="#">
-                        <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
-                            <i class="fe fe-eye"></i>
-                        </button>
-                    </a>
-                  </td>
-                  <td>
-                    <form action={{route('deleterecruitment', $item->id)}} method="POST">
-                        {{ csrf_field() }}
-                        {{-- {{ method_field('DELETE') }} --}}
-                        @method('DELETE')
-                        <input type="hidden" name="item_id" name = "item_id" value="{{$item->id ?? ''}}">
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this Recruitment?')" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
-                            <i class="fe fe-trash-2"></i>
-                         </button>
-                    </form>
-                  </td>
-                  <td>
-                    <a class="icon" href="">
-                      <i class="fe fe-edit"></i>
-                    </a>
-                  </td>
-                </tr>
+                        <th>Alias</th>
+                        <th>Job Title</th>
+                        <th>Job Type</th>
+                        <th>Created by</th>
+                        <th>Status</th>
+                        <th>City</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($concludedRecruitment as $item)
+                    <tr>
+                        <td><span class="text-muted"></span>
+                          <label class="form-check">
+                              <input type="checkbox" class="form-check-input" value="{{$item->id ?? ''}}">
+                          </label>
+                      </td>  {{-- {{$item->id ?? ''}} --}}
+                      <td><a href="#" class="text-inherit">{{$item->alias ?? ''}}</a></td>
+                        <td>
+                          {{$item->job_title ?? ''}}
+                        </td>
+                        <td>
+                          {{$item->job_type ?? ''}}
+                        </td>
+                        <td>
+                          {{$item->user->first_name ?? ''}} {{$item->user->last_name ?? ''}}
+                        </td>
+                        <td>
+                            {{-- @if ({{$item->status}} == "ongoing")
+                              <span class="status-icon bg-success"></span> Ongoing
+                            @else
+                              <span class="status-icon bg-danger"></span> Concluded
+                            @endif --}}
+                          <span class="status-icon bg-success"></span> Paid
+                        </td>
+                        <td>{{$item->city ?? ''}}</td>
+                        <td>
+                          <a href="#">
+                              <button type="button" class="btn btn-icon btn-xl px-3 btn-primary btn-primary">
+                                  <i class="fe fe-eye"></i>
+                              </button>
+                          </a>
+                        </td>
+                        <td>
+                          <form action="/delete/candidate" method="POST">
+                              {{ csrf_field() }}
+                              {{-- {{ method_field('DELETE') }} --}}
+                              @method('DELETE')
+                              <input type="hidden" name="item_id" name = "item_id" value="">
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete this Recruitment?')" class="btn btn-icon btn-xl px-3 btn-primary btn-danger">
+                                  <i class="fe fe-trash-2"></i>
+                               </button>
+                          </form>
+                        </td>
+                        <td>
+                          <a class="icon" href="">
+                            <i class="fe fe-edit"></i>
+                          </a>
+                        </td>
+                    </tr>
                     {{-- <tr>
                     <td><span class="text-muted">001402</span></td>
                     <td><a href="invoice.html" class="text-inherit">UX Wireframes</a></td>
@@ -102,12 +102,12 @@
                     <td class="text-right">
                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
                         <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                         </div>
                     </td>
                     <td>
                         <a class="icon" href="javascript:void(0)">
-                        <i class="fe fe-edit"></i>
+                            <i class="fe fe-edit"></i>
                         </a>
                     </td>
                     </tr>
@@ -130,12 +130,12 @@
                     <td class="text-right">
                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
                         <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                         </div>
                     </td>
                     <td>
                         <a class="icon" href="javascript:void(0)">
-                        <i class="fe fe-edit"></i>
+                            <i class="fe fe-edit"></i>
                         </a>
                     </td>
                     </tr>
@@ -157,13 +157,13 @@
                     <td>$1500</td>
                     <td class="text-right">
                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
-                        <div class="dropdown">
+                    <div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                        </div>
+                    </div>
                     </td>
                     <td>
                         <a class="icon" href="javascript:void(0)">
-                        <i class="fe fe-edit"></i>
+                            <i class="fe fe-edit"></i>
                         </a>
                     </td>
                     </tr>
@@ -186,12 +186,12 @@
                     <td class="text-right">
                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
                         <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                         </div>
                     </td>
                     <td>
                         <a class="icon" href="javascript:void(0)">
-                        <i class="fe fe-edit"></i>
+                            <i class="fe fe-edit"></i>
                         </a>
                     </td>
                     </tr>
@@ -214,19 +214,19 @@
                     <td class="text-right">
                         <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
                         <div class="dropdown">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
                         </div>
                     </td>
                     <td>
                         <a class="icon" href="javascript:void(0)">
-                        <i class="fe fe-edit"></i>
+                            <i class="fe fe-edit"></i>
                         </a>
                     </td>
                     </tr> --}}
-                @endforeach
-              </tbody>
+                    @endforeach
+                </tbody>
             </table>
-          </div>
         </div>
     </div>
+</div>
 @endsection
